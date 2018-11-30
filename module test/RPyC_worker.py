@@ -1,7 +1,7 @@
 import time
 from rpyc import Service
 from rpyc.utils.server import ThreadedServer
-
+import sys
 
 class TimeService(Service):
 
@@ -13,7 +13,7 @@ class TimeService(Service):
     def exposed_heartbeat(self):
         print('heartbeat')
         return 'OK'
-    def exposed_word_count(self,path):
+    def exposed_word_count(self,path,jobid):
         from collections import Counter
         with open(path, 'r') as f:
             text = f.read()
@@ -24,7 +24,11 @@ class TimeService(Service):
         word_list = Text.split()
         # word_list=map(lambda x:x+'1',word_list)
         return Counter(word_list).most_common()
+    def exposed_udf(self,f,parameters):
+        print(type(parameters))
+        result=f(**eval(parameters))
+        return result
 
-
-s = ThreadedServer(service=TimeService, port=12233, auto_register=False)
+_,port=sys.argv
+s = ThreadedServer(service=TimeService, port=int(port), auto_register=False)
 s.start()
