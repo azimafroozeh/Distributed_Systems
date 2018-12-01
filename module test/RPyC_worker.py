@@ -24,6 +24,8 @@ class SlaveService1(SlaveService):
         print(type(parameters))
         result=f(**eval(parameters))
         return result
+    def heartbeat(self):
+        return 0
 
 class ClassicServer(cli.Application):
     mode = cli.SwitchAttr(["-m", "--mode"], cli.Set("threaded", "forking", "stdio", "oneshot"),
