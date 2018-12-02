@@ -22,8 +22,11 @@ def word_count_map(split_number, worker_id):
             writer = csv.writer(f1, delimiter='\t')
             writer.writerow([key] + [value])
 
+
+"""
 j = 0
 while j < 9:
     for i in range(1, 4):
         word_count_map(j, i)
         j += 1
+"""
