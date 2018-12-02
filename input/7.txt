@@ -1,0 +1,1 @@
+MapReduce libraries have been written in many programming languages
