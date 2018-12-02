@@ -24,6 +24,38 @@ class SlaveService1(SlaveService):
         print(type(parameters))
         result=f(**eval(parameters))
         return result
+
+    def reduce_task(self,inter_list, function, output, output_id):
+        result = []
+        for file in inter_list:
+            with open(file, 'r') as f:
+                pair_string = f.read()
+                pair_list = pair_string.split('|')
+                pair_list.remove('')
+                pair_list = [eval(i) for i in pair_list]
+                result.extend(function(pair_list))
+        with open(output + '/' + str(output_id), 'w') as f:
+            f.write(str(result))
+
+    def key2interfile(self,key, inter_split):
+        import hashlib
+        hash_object = hashlib.md5(bytes(key, 'utf-8'))
+        return int(hash_object.hexdigest(), 16) % inter_split
+    def map_task(self,input_list, function, inter_path, inter_split=5):
+        inter_list = [[] for i in range(inter_split)]
+        result = []
+        for file in input_list:
+            result.extend(function(file))
+        for pair in result:
+            assigned_id = self.key2interfile(pair[0], inter_split)
+            # print(assigned_id)
+            inter_list[assigned_id].append(pair)
+        # print(result)
+        for i in range(inter_split):
+            # print(inter_path)
+            with open(str(inter_path) + '/' + str(i), 'a+') as f:
+                print(inter_list[i])
+                f.write('|'.join(([str(j) for j in inter_list[i]])) + '|')
     def heartbeat(self):
         return 0
 

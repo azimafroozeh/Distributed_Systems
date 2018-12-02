@@ -71,7 +71,11 @@ def flatmap(input,function,task_split=10,inter_split=5):
     if not os.path.exists(inter_path):
         os.mkdir(inter_path)
     for input_list in chunks(file_list,ceil(len(file_list)/task_split)):
-        map_task(input_list,function,inter_path,inter_split)# here we can assign it to worker
+        map_task(input_list,function,inter_path,inter_split)# here we can assign it to
+        '''
+            here you can do:
+            rpyc.root.udf(map_task,parameters)
+        '''
     return inter_path
 
 def flatReduce(output,function,inter_path,task_split=2):
