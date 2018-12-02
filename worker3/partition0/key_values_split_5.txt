@@ -1,4 +1,3 @@
-which	1
 performs	1
 filtering	1
-sorting	1
+and	1

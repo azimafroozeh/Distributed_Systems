@@ -1,7 +1,7 @@
-
 def word_count_map(split_number, worker_id):
     import csv
     from collections import Counter
+    import hashlib
     path = "/Users/azimafroozeh/PycharmProjects/DistributedSystem/"
     with open(path + "input/" + str(split_number) + ".txt", 'r') as f:
         text = f.read()
@@ -14,7 +14,8 @@ def word_count_map(split_number, worker_id):
     f0 = open(path + "worker" + str(worker_id) + "/partition0" + "/key_values_split_" + str(split_number) + ".txt", 'w')
     f1 = open(path + "worker" + str(worker_id) + "/partition1" + "/key_values_split_" + str(split_number) + ".txt", 'w')
     for key, value in key_values:
-        if (hash(key) % 2) == 0:
+        hash_object = hashlib.md5(bytes(key, 'utf-8'))
+        if (int(hash_object.hexdigest(), 16) % 2) == 0:
             writer = csv.writer(f0, delimiter='\t')
             writer.writerow([key] + [value])
         else:

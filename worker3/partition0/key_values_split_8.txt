@@ -1,6 +1,7 @@
-was	1
-no	1
-using	1
-as	1
-processing	1
+google	1
+longer	1
+mapreduce	1
+primary	1
+big	1
+data	1
 model	1
