@@ -248,8 +248,10 @@ def WC():
     print(Counter(word_list).most_common())
     return "done"
     
-def WC1():
-    print("SDgsdgsdgs")
+
+    
+def send_data(path):
+    
 """
 heartbeat_txt = """
 def heartbeat():
@@ -273,8 +275,11 @@ while True:
             for i in range(NUMBER_OF_RESOURCE_PER_WORKER_NODE):
                 resources.insert(Resource(worker, i))
             ros = conn.modules.os
-            pwd = ros.getcwd()
+            # in real node
+            # pwd = ros.getcwd()
+            pwd = "/Users/azimafroozeh/PycharmProjects/DistributedSystem"
             parent_dic = pwd + "/worker_" + str(worker.id) + "_intermediate_result"
+            print(parent_dic)
             if not ros.path.exists(parent_dic):
                 ros.makedirs(parent_dic)
             ros.chdir(parent_dic)
