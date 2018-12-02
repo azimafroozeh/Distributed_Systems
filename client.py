@@ -1,6 +1,7 @@
 import rpyc
 import time
 import _thread
+import os
 
 class Job:
     status = None
@@ -10,6 +11,7 @@ class Worker:
     conn = None
     port_number = None
     id = None
+    path = None
 
     def __init__(self):
         global port_number
@@ -216,8 +218,7 @@ MAP_TASK = 0
 REDUCE_TASK = 1
 port_number = 22221
 job_id = 0
-
-
+NUMBER_OF_PARTITION = 2
 tasks = TaskPriorityQueue()
 resources = ResourcePriorityQueue()
 workers = []
@@ -271,7 +272,18 @@ while True:
             number_of_workers += 1
             for i in range(NUMBER_OF_RESOURCE_PER_WORKER_NODE):
                 resources.insert(Resource(worker, i))
-            print("Added Worker Port Number", workers[number_of_workers - 1].port_number)
+            ros = conn.modules.os
+            pwd = ros.getcwd()
+            parent_dic = pwd + "/worker_" + str(worker.id) + "_intermediate_result"
+            if not ros.path.exists(parent_dic):
+                ros.makedirs(parent_dic)
+            ros.chdir(parent_dic)
+            for i in range(2):
+                partition_dic = parent_dic + "/partition_" + str(i)
+                if not ros.path.exists(partition_dic):
+                    ros.makedirs(partition_dic)
+            worker.path = parent_dic
+            print("Added Worker on Port Number", port_number - 1)
             print("Number of workers: ", number_of_workers)
             print("")
 
