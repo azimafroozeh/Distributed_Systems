@@ -1,7 +1,17 @@
 def word_count_reduce():
+    from collections import Counter
     #for worker in workers:
         #path = worker.path + "/partition_"+  str(partition)
-        data = read_all_csv("intermediate_data\\text\partition0")
+    data = read_all_csv("/Users/azimafroozeh/PycharmProjects/DistributedSystem/worker1/partition0")
+    result = {}
+    for key, value in data:
+        if key in result:
+            result[key] += 1
+        else:
+            result[key] = 1
+    print(result)
+
+
         # produce final result
 
 
@@ -9,20 +19,15 @@ def word_count_reduce():
 def read_all_csv(path):
     import csv
     import os
-    files=os.listdir(path)
-    files=[path+'/'+f for f in files]
-    result=[]
+    files = os.listdir(path)
+    files = [path+'/'+f for f in files]
+    result = []
     for file in files:
-        reader=csv.reader(open(file),delimiter='\t')
+        reader = csv.reader(open(file), delimiter='\t')
         result.extend([row for row in reader])
-    output={}
-    for row in result:
-        if row[0] in output:
-            output[row[0]]+=row[1]
-        else:
-            output[row[0]]= row[1]
-    return output
+    return  result
 # reader=csv.reader(open('intermediate_data\\text\partition0\key_values_split_0.txt'),delimiter='\t')
 # for row in reader:
 #     print(row)
-#print(read_all_csv("intermediate_data\\text\partition0"))
+#print(read_all_csv("/Users/azimafroozeh/PycharmProjects/DistributedSystem/worker1/partition0"))
+word_count_reduce()

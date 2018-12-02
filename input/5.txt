@@ -1,1 +1,1 @@
-which performs filtering and sorting
+which performs filtering and sorting Algorithm Sorting Alex

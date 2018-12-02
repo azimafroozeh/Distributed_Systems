@@ -3,10 +3,29 @@
   <component name="ChangeListManager">
     <list default="true" id="fcb46ec0-e4b2-4d70-9986-b5a59d09b792" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/word_count_map_phase.py" beforeDir="false" afterPath="$PROJECT_DIR$/word_count_map_phase.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input/0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input/0.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input/1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input/1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input/2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input/2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input/3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input/3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input/4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input/4.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input/5.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input/5.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input/6.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input/6.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input/7.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input/7.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input/8.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input/8.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input/9.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input/9.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/word_count_reduce_phase.py" beforeDir="false" afterPath="$PROJECT_DIR$/word_count_reduce_phase.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/worker1/partition0/key_values_split_0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/worker1/partition0/key_values_split_0.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worker1/partition0/key_values_split_3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/worker1/partition0/key_values_split_3.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/worker1/partition1/key_values_split_0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/worker1/partition1/key_values_split_0.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worker1/partition1/key_values_split_3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/worker1/partition1/key_values_split_3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worker1/partition1/key_values_split_6.txt" beforeDir="false" afterPath="$PROJECT_DIR$/worker1/partition1/key_values_split_6.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worker2/partition0/key_values_split_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/worker2/partition0/key_values_split_1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worker2/partition0/key_values_split_7.txt" beforeDir="false" afterPath="$PROJECT_DIR$/worker2/partition0/key_values_split_7.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worker2/partition1/key_values_split_4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/worker2/partition1/key_values_split_4.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worker3/partition0/key_values_split_2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/worker3/partition0/key_values_split_2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worker3/partition0/key_values_split_8.txt" beforeDir="false" afterPath="$PROJECT_DIR$/worker3/partition0/key_values_split_8.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worker3/partition1/key_values_split_2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/worker3/partition1/key_values_split_2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worker3/partition1/key_values_split_5.txt" beforeDir="false" afterPath="$PROJECT_DIR$/worker3/partition1/key_values_split_5.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,45 +36,46 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/DistributedSystem$rpyc_classic.coverage" NAME="rpyc_classic Coverage Results" MODIFIED="1543598503216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/bin" />
     <SUITE FILE_PATH="coverage/DistributedSystem$client.coverage" NAME="client Coverage Results" MODIFIED="1543785964018" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/DistributedSystem$wc.coverage" NAME="wc Coverage Results" MODIFIED="1543792636216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DistributedSystem$wc.coverage" NAME="wc Coverage Results" MODIFIED="1543793163034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DistributedSystem$hash_testing.coverage" NAME="hash_testing Coverage Results" MODIFIED="1543776457568" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/worker3" />
-    <SUITE FILE_PATH="coverage/DistributedSystem$word_count_reduce_phase.coverage" NAME="word_count_reduce_phase Coverage Results" MODIFIED="1543788308540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DistributedSystem$word_count_reduce_phase.coverage" NAME="word_count_reduce_phase Coverage Results" MODIFIED="1543794010545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client.py">
+        <entry file="file://$PROJECT_DIR$/input/0.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="279" column="73" selection-start-line="279" selection-start-column="73" selection-end-line="279" selection-end-column="73" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/word_count_map_phase.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+            <state>
+              <caret column="37" selection-start-column="37" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/word_count_reduce_phase.py">
+        <entry file="file://$PROJECT_DIR$/word_count_map_phase.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="46" lean-forward="true" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
+            <state relative-caret-position="270">
+              <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/worker1/partition0/key_values_split_0.txt">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/word_count_reduce_phase.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -68,10 +88,46 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/worker1/partition0/key_values_split_6.txt">
+        <entry file="file://$PROJECT_DIR$/input/5.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+            <state>
+              <caret column="59" selection-start-column="59" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/input/6.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="74" selection-start-column="74" selection-end-column="74" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/input/7.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="82" selection-start-column="82" selection-end-column="82" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/input/8.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="89" selection-start-column="89" selection-end-column="89" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/input/9.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="151" selection-start-column="151" selection-end-column="151" />
             </state>
           </provider>
         </entry>
@@ -109,18 +165,27 @@
         <option value="$PROJECT_DIR$/venv/input/8.txt" />
         <option value="$PROJECT_DIR$/venv/input/9.txt" />
         <option value="$PROJECT_DIR$/venv/input/0.txt" />
-        <option value="$PROJECT_DIR$/input/1.txt" />
         <option value="$PROJECT_DIR$/worker3/hash_testing.py" />
         <option value="$PROJECT_DIR$/wc.py" />
         <option value="$PROJECT_DIR$/client.py" />
-        <option value="$PROJECT_DIR$/word_count_reduce_phase.py" />
         <option value="$PROJECT_DIR$/word_count_map_phase.py" />
+        <option value="$PROJECT_DIR$/input/0.txt" />
+        <option value="$PROJECT_DIR$/input/1.txt" />
+        <option value="$PROJECT_DIR$/input/2.txt" />
+        <option value="$PROJECT_DIR$/input/3.txt" />
+        <option value="$PROJECT_DIR$/input/4.txt" />
+        <option value="$PROJECT_DIR$/input/5.txt" />
+        <option value="$PROJECT_DIR$/input/6.txt" />
+        <option value="$PROJECT_DIR$/input/7.txt" />
+        <option value="$PROJECT_DIR$/input/8.txt" />
+        <option value="$PROJECT_DIR$/input/9.txt" />
+        <option value="$PROJECT_DIR$/word_count_reduce_phase.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="227" />
-    <option name="y" value="164" />
+    <option name="y" value="82" />
     <option name="width" value="1400" />
     <option name="height" value="921" />
   </component>
@@ -137,6 +202,11 @@
             <path>
               <item name="DistributedSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="DistributedSystem" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DistributedSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DistributedSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="input" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="DistributedSystem" type="b2602c69:ProjectViewProjectNode" />
@@ -183,7 +253,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.wc">
+  <component name="RunManager" selected="Python.word_count_reduce_phase">
     <configuration name="client" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="DistributedSystem" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -296,8 +366,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.wc" />
         <item itemvalue="Python.word_count_reduce_phase" />
+        <item itemvalue="Python.wc" />
         <item itemvalue="Python.client" />
         <item itemvalue="Python.hash_testing" />
         <item itemvalue="Python.rpyc_classic" />
@@ -321,12 +391,12 @@
       <workItem from="1543659694099" duration="10450000" />
       <workItem from="1543694953222" duration="11937000" />
       <workItem from="1543745629080" duration="18648000" />
-      <workItem from="1543784391461" duration="4244000" />
+      <workItem from="1543784391461" duration="5997000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58267000" />
+    <option name="totallyTimeSpent" value="60020000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -338,15 +408,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="227" y="164" width="1400" height="921" extended-state="0" />
+    <frame x="227" y="82" width="1400" height="921" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24594992" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24594992" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3293124" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49852726" visible="true" weight="0.3172497" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49852726" visible="true" weight="0.3172497" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -382,82 +452,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/input/0.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="10" lean-forward="true" selection-start-column="10" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/input/9.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="146" selection-start-column="146" selection-end-column="146" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/input/8.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="79" selection-start-column="79" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/input/7.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="67" selection-start-column="67" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/input/6.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="66" selection-start-column="66" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/input/5.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="36" selection-start-column="36" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/input/4.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="50" selection-start-column="50" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/input/3.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="8" selection-start-column="8" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/input/2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" selection-start-column="11" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/worker2/partition1/KeyValues.txt" />
     <entry file="file://$PROJECT_DIR$/worker2/Partition2/KeyValues.txt" />
     <entry file="file://$PROJECT_DIR$/worker3/partition1/KeyValues.txt" />
     <entry file="file://$PROJECT_DIR$/worker3/Partition2/KeyValues.txt" />
     <entry file="file://$PROJECT_DIR$/worker1/Partition2/KeyValues.txt" />
     <entry file="file://$PROJECT_DIR$/text_text" />
-    <entry file="file://$PROJECT_DIR$/input/1.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="24" selection-start-column="24" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/worker1/partition0/KeyValues1.txt" />
     <entry file="file://$PROJECT_DIR$/worker1/partition0/KeyValues.txt" />
     <entry file="file://$PROJECT_DIR$/worker1/partition1/KeyValues.txt" />
@@ -467,15 +467,6 @@
     <entry file="file://$PROJECT_DIR$/worker1/partition0/key_values_split_9.txt" />
     <entry file="file://$PROJECT_DIR$/worker3/hash_testing.py" />
     <entry file="file://$PROJECT_DIR$/worker1/partition1/key_values_split_9.txt" />
-    <entry file="file://$PROJECT_DIR$/worker1/partition1/key_values_split_0.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/worker1/partition1/key_values_split_3.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/worker1/partition1/key_values_split_6.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/client.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
@@ -486,10 +477,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/worker1/partition0/key_values_split_3.txt">
+    <entry file="file://$PROJECT_DIR$/worker1/partition1/key_values_split_0.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/worker1/partition1/key_values_split_3.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/worker1/partition1/key_values_split_6.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/worker2/partition0/key_values_split_1.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/worker2/partition0/key_values_split_4.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        <state>
+          <caret column="12" selection-start-column="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/worker2/partition0/key_values_split_7.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
@@ -500,20 +510,101 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/worker1/partition0/key_values_split_0.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/word_count_reduce_phase.py">
+    <entry file="file://$PROJECT_DIR$/input/1.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="46" lean-forward="true" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
+        <state>
+          <caret column="38" selection-start-column="38" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="23" selection-start-column="23" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/3.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="39" selection-start-column="39" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/4.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="66" selection-start-column="66" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/5.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="59" selection-start-column="59" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/6.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="74" selection-start-column="74" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/7.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="82" selection-start-column="82" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/8.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="89" selection-start-column="89" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/9.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="151" selection-start-column="151" selection-end-column="151" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/worker1/partition0/key_values_split_3.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/0.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="37" selection-start-column="37" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/word_count_map_phase.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        <state relative-caret-position="270">
+          <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/worker1/partition0/key_values_split_0.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/word_count_reduce_phase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
         </state>
       </provider>
     </entry>
