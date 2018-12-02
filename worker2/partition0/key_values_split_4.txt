@@ -1,3 +1,5 @@
+a	2
 program	1
-composed	1
-map	1
+is	1
+of	1
+procedure	1

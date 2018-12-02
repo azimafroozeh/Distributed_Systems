@@ -1,2 +1,1 @@
-good	1
 bye	1

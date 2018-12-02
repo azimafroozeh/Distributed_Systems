@@ -1,7 +1,7 @@
+google	1
+longer	1
 mapreduce	1
 their	1
 primary	1
 big	1
 data	1
-processing	1
-model	1
