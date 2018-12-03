@@ -328,7 +328,7 @@ def word_count_reduce(workers, partition):
         else:
             result[key] = 1
     print(result)
-    
+    gi
 """
 
 reduce_task_txt1 = """
