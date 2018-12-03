@@ -36,6 +36,7 @@ class SlaveService1(SlaveService):
                 result.extend(function(pair_list))
         with open(output + '/' + str(output_id), 'w') as f:
             f.write(str(result))
+        return 0
 
     def key2interfile(self,key, inter_split):
         import hashlib
@@ -45,7 +46,8 @@ class SlaveService1(SlaveService):
         inter_list = [[] for i in range(inter_split)]
         result = []
         for file in input_list:
-            result.extend(function(file))
+            with open(file,'r') as f:
+                result.extend(function(f.read()))
         for pair in result:
             assigned_id = self.key2interfile(pair[0], inter_split)
             # print(assigned_id)
@@ -56,6 +58,7 @@ class SlaveService1(SlaveService):
             with open(str(inter_path) + '/' + str(i), 'a+') as f:
                 print(inter_list[i])
                 f.write('|'.join(([str(j) for j in inter_list[i]])) + '|')
+        return 0
     def heartbeat(self):
         return 0
 

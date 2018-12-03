@@ -29,6 +29,7 @@ class Task:
     result = None
     resource = None
     conn = None
+    parameters=None
 
     def __init__(self, info, priority):
         global job_id
@@ -158,13 +159,17 @@ def scheduler(threadName):
                 except:
                     print("Ddddddddddddddddddddddddddddd")
                 else:
-                    deleted_task.conn.execute(wc_txt)
-                    deleted_task.remote_func = deleted_task.conn.namespace['WC1']
-                    deleted_task.func = rpyc.async_(deleted_task.remote_func)
-                    deleted_task.result = deleted_task.func()
+                    #deleted_task.conn.execute(wc_txt)
+                    #deleted_task.remote_func = deleted_task.conn.namespace['WC1']
+                    if deleted_task.remote_func=='map':
+
+                        deleted_task.func = rpyc.async_(deleted_task.conn.root.map_task)
+                    else:
+                        deleted_task.func = rpyc.async_(deleted_task.conn.root.reduce_task)
+                    deleted_task.result = deleted_task.func(*deleted_task.parameters)
                     deleted_task.result.add_callback(r_func(deleted_resource))
 
-                    deleted_task.remote_func=
+                    #deleted_task.remote_func=
                     # _thread.start_new_thread(result, ("SchedulerThread", deleted_task))
 
 
@@ -220,11 +225,13 @@ class MasterNode():
                 print('conf fail')
     def init(self):
         self.node_list = self.conf['Worker_List']
-        for node in self.node_list:
+        for node_name in self.node_list:
+            node=self.conf[node_name]
+            print(node)
             try:
-                conn = rpyc.classic.connect(node['IP'], port=node['port'])
+                conn = rpyc.classic.connect(node['IP'], port=int(node['port']))
             except:
-                print("Worker is not running on port=", node['port'])
+                print("Worker is not running on port=", str(node['port']))
             else:
                 worker = Worker()
                 worker.conn = conn
@@ -249,19 +256,36 @@ class MasterNode():
         inter_path = 'intermediate_data/' + str(int(time.time()))
         if not os.path.exists(inter_path):
             os.mkdir(inter_path)
+        job_id=0
         for input_list in self.chunks(file_list, ceil(len(file_list) / task_split)):
-            tasks.insert()
-            map_task(input_list, function, inter_path, inter_split)  # here we can assign it to
-            '''
-                here you can do:
-                rpyc.root.udf(map_task,parameters)
-            '''
+            t=Task(job_id,3)
+            job_id+=1
+            t.remote_func='map'
+            t.parameters=(input_list, function, inter_path, inter_split)
+
+            tasks.insert(t)
+            #map_task(input_list, function, inter_path, inter_split)  # here we can assign it to
         return inter_path
+
+    def flatReduce(self,output, function, inter_path, task_split=2):
+        from math import ceil
+        file_list = os.listdir(inter_path)
+        file_list = [inter_path + '/' + f for f in file_list]
+        if not os.path.exists(output):
+            os.mkdir(output)
+        output_id = 0
+        for inter_file_list in self.chunks(file_list, ceil(len(file_list) / task_split)):
+            t=Task(job_id,3)
+            job_id+=1
+            t.remote_func = 'reduce'
+            t.parameters=(inter_file_list, function, output, output_id)
+            #conn.root.reduce_task(inter_file_list, function, output, output_id)  # here we can assign it to worker
+            output_id += 1
 LIVE = 0
 FAILED = 1
 MAPPING = 2
 REDUCING = 3
-NUMBER_OF_RESOURCE_PER_WORKER_NODE = 5
+NUMBER_OF_RESOURCE_PER_WORKER_NODE = 1
 TASK_NUMBERS = 10
 NUMBER_OF_TASKS = 10
 NUMBER_OF_TASKS_PER_WORKER = 1
@@ -275,48 +299,78 @@ tasks = TaskPriorityQueue()
 resources = ResourcePriorityQueue()
 workers = []
 number_of_workers = 0
-
+test_input_path='input'
+test_output_path='output'
 _thread.start_new_thread(scheduler, ("SchedulerThread",))
 _thread.start_new_thread(heartbeat, ("HeartBeatThread",))
-
+def WC(text):
+    for char in '-.,\n':
+        Text = text.replace(char, ' ')
+    Text = Text.lower()
+    word_list = Text.split()
+    print(word_list)
+    return [(i,1) for i in word_list]
+def reduce(pair_list):
+    print(pair_list)
+    out_dic={}
+    for pair in pair_list:
+        if pair[0] in out_dic:
+            out_dic[pair[0]]+=pair[1]
+        else:
+            out_dic[pair[0]]= pair[1]
+    print(out_dic)
+    return [(i,out_dic[i]) for i in out_dic]
 conn_map = {}
 
-while True:
-    print("Enter a for adding worker, Enter e for exit program, Enter s for submit new job")
-    command = input()
-    if command == "a":
-        try:
-            conn = rpyc.classic.connect("localhost", port=port_number)
-        except:
-            print("Worker is not running on port=", port_number)
-        else:
-            worker = Worker()
-            worker.conn = conn
-            worker.id = number_of_workers
-            workers.append(worker)
-            number_of_workers += 1
-            for i in range(NUMBER_OF_RESOURCE_PER_WORKER_NODE):
-                resources.insert(Resource(worker, i))
-            print("Added Worker Port Number", workers[number_of_workers - 1].port_number)
-            print("Number of workers: ", number_of_workers)
-            print("")
 
-    elif command == "e":
+mn=MasterNode()
+while(1):
+    if len(workers):
         break
-    elif command == 's':
-        for i in range(NUMBER_OF_TASKS):
-            tasks.insert(Task(i, 3))
-        job_id += 1
+    mn.init()
 
-    elif command == 't':
-        while not resources.is_empty():
-            resource = resources.delete()
-            print(resource.worker, resource.priority)
-        while not tasks.is_empty():
-            print(tasks.delete().job_id)
+inter_path=mn.flatmap(test_input_path,WC)
+while(1):
+    if tasks.is_empty() and resources.size()==len(workers):
+        break
+mn.flatReduce(test_output_path,reduce,inter_path)
 
-    else:
-        continue
-
-for worker in workers:
-    print("asdafdasdddddddd", file=worker.conn.modules.sys.stdout)
+# while True:
+#     print("Enter a for adding worker, Enter e for exit program, Enter s for submit new job")
+#     command = input()
+#     if command == "a":
+#         try:
+#             conn = rpyc.classic.connect("localhost", port=port_number)
+#         except:
+#             print("Worker is not running on port=", port_number)
+#         else:
+#             worker = Worker()
+#             worker.conn = conn
+#             worker.id = number_of_workers
+#             workers.append(worker)
+#             number_of_workers += 1
+#             for i in range(NUMBER_OF_RESOURCE_PER_WORKER_NODE):
+#                 resources.insert(Resource(worker, i))
+#             print("Added Worker Port Number", workers[number_of_workers - 1].port_number)
+#             print("Number of workers: ", number_of_workers)
+#             print("")
+#
+#     elif command == "e":
+#         break
+#     elif command == 's':
+#         for i in range(NUMBER_OF_TASKS):
+#             tasks.insert(Task(i, 3))
+#         job_id += 1
+#
+#     elif command == 't':
+#         while not resources.is_empty():
+#             resource = resources.delete()
+#             print(resource.worker, resource.priority)
+#         while not tasks.is_empty():
+#             print(tasks.delete().job_id)
+#
+#     else:
+#         continue
+#
+# for worker in workers:
+#     print("asdafdasdddddddd", file=worker.conn.modules.sys.stdout)

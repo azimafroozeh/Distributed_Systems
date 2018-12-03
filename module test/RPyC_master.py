@@ -67,18 +67,18 @@ import os
 from math import ceil
 import time
 import hashlib
-def WC(path):
+def WC(text):
     from collections import Counter
-
-    with open(path,'r') as f:
-        text=f.read()
+    #
+    # with open(path,'r') as f:
+    #     text=f.read()
     for char in '-.,\n':
         Text = text.replace(char, ' ')
     Text = Text.lower()
     # split returns a list of words delimited by sequences of whitespace (including tabs, newlines, etc, like re's \s)
     word_list = Text.split()
     #word_list=map(lambda x:x+'1',word_list)
-    return Counter(word_list).most_common()
+    return [(i,1) for i in word_list]
 def reduce(pair_list):
     print(pair_list)
     out_dic={}

@@ -10,9 +10,9 @@ def read_all_csv(path):
     output={}
     for row in result:
         if row[0] in output:
-            output[row[0]]+=row[1]
+            output[row[0]]+=int(row[1])
         else:
-            output[row[0]]= row[1]
+            output[row[0]]= int(row[1])
     return output
 # reader=csv.reader(open('intermediate_data\\text\partition0\key_values_split_0.txt'),delimiter='\t')
 # for row in reader:
