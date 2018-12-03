@@ -1,0 +1,7 @@
+good	1
+bye	1
+mother	1
+love	1
+good	1
+bad	1
+ugly	1

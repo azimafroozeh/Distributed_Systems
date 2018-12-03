@@ -1,0 +1,6 @@
+azim	1
+tao	1
+azim	1
+azim	1
+azim	1
+tao	1

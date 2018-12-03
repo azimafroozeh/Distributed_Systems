@@ -157,9 +157,9 @@ def scheduler(threadName):
                         print("Ddddddddddddddddddddddddddddd")
                     else:
                         deleted_task.conn.execute(wc_txt)
-                        deleted_task.remote_func = deleted_task.conn.namespace['WC1']
+                        deleted_task.remote_func = deleted_task.conn.namespace['word_count_map']
                         deleted_task.func = rpyc.async_(deleted_task.remote_func)
-                        deleted_task.result = deleted_task.func()
+                        deleted_task.result = deleted_task.func(deleted_task.info, deleted_resource.worker.id)
                         deleted_task.result.add_callback(r_func(deleted_resource))
                         #_thread.start_new_thread(result, ("SchedulerThread", deleted_task))
 
@@ -247,16 +247,94 @@ def WC():
     #word_list=map(lambda x:x+'1',word_list)
     print(Counter(word_list).most_common())
     return "done"
-    
 
+
+def word_count_map(split_number, worker_id):
+    print("running")
+    import csv
+    from collections import Counter
+    import hashlib
+    path = "/Users/azimafroozeh/PycharmProjects/DistributedSystem/"
+    with open(path + "input/" + str(split_number) + ".txt", 'r') as f:
+        text = f.read()
+    text = text.lower()
+    print(text)
+    # split returns a list of words delimited by sequences of whitespace (including tabs, newlines, etc, like re's \s)
+    key_values = {}
+    # for key in text.split():
+       # key_values[key] = 1;
+    # word_list=map(lambda x:x+'1',word_list)
+
+    #key_values = Counter(word_list).most_common()
+    f0 = open(path + "worker_" + str(worker_id) + "_intermediate_result/partition_0" + "/key_values_split_" + str(split_number) + ".txt", 'w')
+    f1 = open(path + "worker_" + str(worker_id) + "_intermediate_result/partition_1" + "/key_values_split_" + str(split_number) + ".txt", 'w')
     
-def send_data(path):
-    
+    print(f1)
+    print(f0)
+    for key in text.split():
+        hash_object = hashlib.md5(bytes(key, 'utf-8'))
+        if (int(hash_object.hexdigest(), 16) % 2) == 0:
+            writer = csv.writer(f0, delimiter='\t')
+            writer.writerow([key] + [1])
+        else:
+            writer = csv.writer(f1, delimiter='\t')
+            writer.writerow([key] + [1])
+            
+def read_all_csv(path):
+    print("sending infromatiosn")
+    import csv
+    import os
+    print(path)
+    files = os.listdir(path)
+    files = [path+'/'+f for f in files]
+    #print(files)
+    result = []
+    for file in files:
+        reader = csv.reader(open(file), delimiter='\t')
+        result.extend([row for row in reader])
+    print(result)
+    return result  
+
+def hello1():
+    import os
+    print("dgdddddddgd") 
 """
 heartbeat_txt = """
 def heartbeat():
     return "I'm alive"
 """
+
+reduce_task_txt = """
+def word_count_reduce(workers, partition):
+    print("reduce task")
+    import rpyc
+    import csv
+    data = []
+    for worker in workers:
+        path = worker.path + "/partition_"+  str(partition)
+        try:
+            conn = rpyc.classic.connect("localhost", port=worker.port_number)
+        except:
+            print("Ddddddddddddddddddddddddddddd")
+        else:
+            remote_func = worker.conn.namespace['read_all_csv']
+            data1 = remote_func(path)
+            print(data1)
+            data.extend(data1)
+    result = {}
+    for key, value in data:
+        if key in result:
+            result[key] += 1
+        else:
+            result[key] = 1
+    print(result)
+    
+"""
+
+reduce_task_txt1 = """
+
+"""
+
 
 while True:
     print("Enter a for adding worker, Enter e for exit program, Enter s for submit new job")
@@ -269,6 +347,7 @@ while True:
         else:
             worker = Worker()
             worker.conn = conn
+            worker.conn.execute(wc_txt)
             worker.id = number_of_workers
             workers.append(worker)
             number_of_workers += 1
@@ -305,6 +384,16 @@ while True:
             print(resource.worker, resource.priority)
         while not tasks.is_empty():
             print(tasks.delete().job_id)
+
+    elif command == 'r':
+        try:
+            conn1 = rpyc.classic.connect("localhost", port=22225)
+        except:
+            print("Ddddddddddddddddddddddddddddd")
+        else:
+            conn1.execute(reduce_task_txt)
+            remote_func = conn1.namespace['word_count_reduce']
+            remote_func(workers, 1)
 
     else:
         continue

@@ -1,0 +1,4 @@
+mapreduce	1
+composed	1
+of	1
+map	1
