@@ -1,0 +1,2 @@
+Enter a for adding worker, Enter e for exit program, Enter s for submit new job
+Enter a for adding worker, Enter e for exit program, Enter s for submit new job
