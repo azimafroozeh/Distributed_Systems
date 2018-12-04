@@ -39,5 +39,6 @@ to every node. We need to
 do it asynchronously. If this implementation for heart beating is approved we
 can use asynchronous version of RPyC that trigger the event on what ever happened.
 - [x] For the heartbeat we can also use one sequence number 
-to get sure that the ack message is not retransmitted or something like that.
+to get sure that the retransmitted ack message is not considered as 
+new ack message(this problem is already solved with using TCP).
 
