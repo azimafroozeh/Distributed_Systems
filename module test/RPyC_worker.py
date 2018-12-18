@@ -20,57 +20,48 @@ from rpyc.lib import setup_logger
 from rpyc.core import SlaveService
 from rpyc import Service
 import _thread
-def heatbeat(self):
-    "send msg to self.connection_ip"
+
 class SlaveService1(SlaveService):
     # connection_ip=None
     # def __init__(self):
     #     _thread.start_new_thread(heatbeat,self)
     #     super(SlaveService1,self).__init__()
 
-    def udf(self,f,parameters):
-        print(type(parameters))
-        result=f(**eval(parameters))
-        return result
-
-    def reduce_task(self,inter_list, function, output, output_id):
-        result = []
-        for file in inter_list:
-            with open(file, 'r') as f:
-                pair_string = f.read()
-                pair_list = pair_string.split('|')
-                pair_list.remove('')
-                pair_list = [eval(i) for i in pair_list]
-                result.extend(function(pair_list))
-        with open(output + '/' + str(output_id), 'w') as f:
-            f.write(str(result))
-        return 0
-
-    def key2interfile(self,key, inter_split):
-        import hashlib
-        hash_object = hashlib.md5(bytes(key, 'utf-8'))
-        return int(hash_object.hexdigest(), 16) % inter_split
-    def map_task(self,input_list, function, inter_path, inter_split=5):
-        inter_list = [[] for i in range(inter_split)]
-        result = []
-        for file in input_list:
-            with open(file,'r') as f:
-                text=f.read()
-                print(text)
-                result.extend(function(text))
-        for pair in result:
-            assigned_id = self.key2interfile(pair[0], inter_split)
-            # print(assigned_id)
-            inter_list[assigned_id].append(pair)
-        # print(result)
-        for i in range(inter_split):
-            # print(inter_path)
-            with open(str(inter_path) + '/' + str(i), 'a+') as f:
-                print(inter_list[i])
-                f.write('|'.join(([str(j) for j in inter_list[i]])) + '|')
-        return 0
-    def heartbeat(self):
-        return 0
+    def word_count_reduce(self,workers, partition):
+        print("reduce task")
+        print("X")
+        print("test")
+        import rpyc
+        import csv
+        data = []
+        print(partition)
+        print(workers)
+        for worker in workers:
+            print(worker)
+            path = worker.path + "/partition_" + str(partition)
+            print(path)
+            try:
+                conn = rpyc.classic.connect("localhost", port=worker.port_number)
+            except:
+                print("Ddddddddddddddddddddddddddddd")
+            else:
+                print("sfasfa")
+                remote_func = worker.conn.namespace['read_all_csv']
+                data1 = remote_func(path)
+                print(path)
+                # print(data1)
+                data.extend(data1)
+        result = {}
+        for key, value in data:
+            if key in result:
+                result[key] += 1
+            else:
+                result[key] = 1
+        print(result)
+        f = open("/Users/azimafroozeh/PycharmProjects/DistributedSystem/output" + "/partition_ " + str(partition), 'w')
+        f.write(str(result))
+        f.close()
+        return ("dddddddooooooneee")
 
 class ClassicServer(cli.Application):
     mode = cli.SwitchAttr(["-m", "--mode"], cli.Set("threaded", "forking", "stdio", "oneshot"),

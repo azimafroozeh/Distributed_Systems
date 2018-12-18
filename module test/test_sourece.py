@@ -7,7 +7,7 @@ def conbain(a,b):
     return ADD(a,b)+1
 from dill.source import getsource
 conn=rpyc.classic.connect("localhost", port=8000)
-func_list=[ADD,MIN,conbain]
+func_list=[conbain,ADD,MIN,conbain]
 for f in func_list:
     conn.execute(getsource(f))
 cn=conn.namespace['conbain']
