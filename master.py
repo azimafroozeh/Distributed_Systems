@@ -198,7 +198,9 @@ def heartbeat(thread_name):
 
 
 def r_func(resource):
+    global Map_finished
     print("done")
+    Map_finished += 1
     resources.insert(resource)
 
 def hb_func(worker):
@@ -213,7 +215,6 @@ NUMBER_OF_RESOURCE_PER_WORKER_NODE = 5
 TASK_NUMBERS = 10
 NUMBER_OF_TASKS = 10
 NUMBER_OF_TASKS_PER_WORKER = 1
-
 MAP_TASK = 0
 REDUCE_TASK = 1
 port_number = 22221
@@ -223,6 +224,7 @@ tasks = TaskPriorityQueue()
 resources = ResourcePriorityQueue()
 workers = []
 number_of_workers = 0
+Map_finished = 0
 
 _thread.start_new_thread(scheduler, ("SchedulerThread",))
 _thread.start_new_thread(heartbeat, ("HeartBeatThread",))
@@ -328,7 +330,10 @@ def word_count_reduce(workers, partition):
         else:
             result[key] = 1
     print(result)
-    gi
+    f = open("/Users/azimafroozeh/PycharmProjects/DistributedSystem/output" + "/partition_ " + str(partition),'w')
+    f.write(str(result))
+    f.close()
+    
 """
 
 reduce_task_txt1 = """
@@ -388,12 +393,48 @@ while True:
     elif command == 'r':
         try:
             conn1 = rpyc.classic.connect("localhost", port=22225)
+            conn2 = rpyc.classic.connect("localhost", port=22226)
         except:
             print("Ddddddddddddddddddddddddddddd")
         else:
             conn1.execute(reduce_task_txt)
-            remote_func = conn1.namespace['word_count_reduce']
-            remote_func(workers, 1)
+            remote_func1 = conn1.namespace['word_count_reduce']
+            remote_func1(workers, 0)
+            conn2.execute(reduce_task_txt)
+            remote_func2= conn2.namespace['word_count_reduce']
+            remote_func2(workers, 1)
+    # 1 map node + 2 reduce node
+    # Delete Worker Intermediate Result
+    # Press a to add one worker
+    # Press t1 to compute
+    elif command == "t1":
+        Map_finished = 0
+        t0 = time.perf_counter()
+        print("t1: 1Map node + 2 reduce node starts at " + str(t0))
+        for i in range(NUMBER_OF_TASKS):
+            tasks.insert(Task(i, 3))
+        job_id += 1
+
+        while Map_finished != NUMBER_OF_TASKS:
+            continue
+
+        try:
+            conn1 = rpyc.classic.connect("localhost", port=22225)
+            conn2 = rpyc.classic.connect("localhost", port=22226)
+        except:
+            print("error happened")
+        else:
+            conn1.execute(reduce_task_txt)
+            remote_func1 = conn1.namespace['word_count_reduce']
+            remote_func1(workers, 0)
+            conn2.execute(reduce_task_txt)
+            remote_func2= conn2.namespace['word_count_reduce']
+            remote_func2(workers, 1)
+        t1 = time.perf_counter()
+        print("t1: 1Map node + 2 reduce node finished at" + str(t1))
+        print("duration time = " + str(t1 - t0))
+        Map_finished = 0
+
 
     else:
         continue

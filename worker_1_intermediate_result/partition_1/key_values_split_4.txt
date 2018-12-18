@@ -1,7 +1,0 @@
-a	1
-program	1
-is	1
-a	1
-procedure	1
-kubrick	1
-stanley	1

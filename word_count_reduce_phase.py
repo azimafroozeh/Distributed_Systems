@@ -1,4 +1,5 @@
 import rpyc
+import sys
 def word_count_reduce(workers, partition):
     import rpyc
     print("dgdgd")
@@ -46,9 +47,10 @@ def read_all_csv(path):
 #print(read_all_csv("/Users/azimafroozeh/PycharmProjects/DistributedSystem/worker1/partition0"))
 #word_count_reduce()
 try:
-    conn1 = rpyc.classic.connect("localhost", port=22221)
+    conn1 = rpyc.classic.connect("18.232.72.153", port=22222)
 except:
-    print("Ddddddddddddddddddddddddddddd")
+    print(sys.exc_info()[0])
 else:
     conn1.execute(reduce_task_txt)
     remote_func = conn1.namespace['hello1']
+    remote_func()
