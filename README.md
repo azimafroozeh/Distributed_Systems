@@ -63,4 +63,18 @@ after map phase completed, there is a possibility that map nodes can failed, the
 
 - [x] The master node is currently using the one to one heartbeats to detect failures. This task should be executed asynchronously, to increase performance. In the case the Lab Supervisor approve the heartbeat implementation, it is possible to use implement this function by using asynchronous rpc and event triggering.
 One improvement is that we use sequence heartbeat for heartbeat messages.
+# Testing
 
+## First test
+ - instruction
+   - type `a` for adding one map worker
+   - type `t1` for executing wordcount example 
+ 
+- commit 26
+- duration time = 8.531974424000001 seconds
+- one map worker 
+- two reduce worker
+- the input directory
+- the output directory
+- diff = 0
+- accuracy = 100
