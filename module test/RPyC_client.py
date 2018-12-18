@@ -242,7 +242,7 @@ class MasterNode():
                 for i in range(NUMBER_OF_RESOURCE_PER_WORKER_NODE):
                     resources.insert(Resource(worker, i))
                 print("Added Worker Port Number", workers[self.number_work - 1].port_number)
-                print("Number of workers: ", number_of_workers)
+                print("Number of workers: ", self.number_work)
                 print("")
 
     def chunks(self,l, n):
@@ -257,6 +257,7 @@ class MasterNode():
         if not os.path.exists(inter_path):
             os.mkdir(inter_path)
         job_id=0
+        print(file_list)
         for input_list in self.chunks(file_list, ceil(len(file_list) / task_split)):
             t=Task(job_id,3)
             job_id+=1
@@ -330,10 +331,10 @@ while(1):
     mn.init()
 
 inter_path=mn.flatmap(test_input_path,WC)
-while(1):
-    if tasks.is_empty() and resources.size()==len(workers):
-        break
-mn.flatReduce(test_output_path,reduce,inter_path)
+# while(1):
+#     if tasks.is_empty() and resources.size()==len(workers):
+#         break
+# mn.flatReduce(test_output_path,reduce,inter_path)
 
 # while True:
 #     print("Enter a for adding worker, Enter e for exit program, Enter s for submit new job")

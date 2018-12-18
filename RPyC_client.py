@@ -5,7 +5,7 @@ import os
 
 class Job:
     status = None
-
+job_id = 0
 
 # class for Worker with conn and status
 class Worker:
@@ -155,10 +155,12 @@ def scheduler(threadName):
                 deleted_task.worker.tasks.append(deleted_task)
                 deleted_task.resource = deleted_resource
                 try:
-                    deleted_task.conn = rpyc.classic.connect("localhost", port=deleted_resource.worker.port_number)
+                    deleted_task.conn = rpyc.connect("localhost", port=deleted_resource.worker.port_number)
                 except:
                     print("Ddddddddddddddddddddddddddddd")
                 else:
+                    #deleted_task.conn.root.map_task(*(deleted_task.parameters))
+                    print("2222")
                     #deleted_task.conn.execute(wc_txt)
                     #deleted_task.remote_func = deleted_task.conn.namespace['WC1']
                     if deleted_task.remote_func=='map':
@@ -170,7 +172,7 @@ def scheduler(threadName):
                     deleted_task.result.add_callback(r_func(deleted_resource))
 
                     #deleted_task.remote_func=
-                    # _thread.start_new_thread(result, ("SchedulerThread", deleted_task))
+                    _thread.start_new_thread(result, ("SchedulerThread", deleted_task))
 
 
 def result(thread_name, task):
@@ -242,7 +244,7 @@ class MasterNode():
                 for i in range(NUMBER_OF_RESOURCE_PER_WORKER_NODE):
                     resources.insert(Resource(worker, i))
                 print("Added Worker Port Number", workers[self.number_work - 1].port_number)
-                print("Number of workers: ", number_of_workers)
+                print("Number of workers: ", self.number_work)
                 print("")
 
     def chunks(self,l, n):
@@ -257,6 +259,7 @@ class MasterNode():
         if not os.path.exists(inter_path):
             os.mkdir(inter_path)
         job_id=0
+        print(file_list)
         for input_list in self.chunks(file_list, ceil(len(file_list) / task_split)):
             t=Task(job_id,3)
             job_id+=1
@@ -274,6 +277,7 @@ class MasterNode():
         if not os.path.exists(output):
             os.mkdir(output)
         output_id = 0
+        job_id = 0
         for inter_file_list in self.chunks(file_list, ceil(len(file_list) / task_split)):
             t=Task(job_id,3)
             job_id+=1
@@ -293,7 +297,7 @@ NUMBER_OF_TASKS_PER_WORKER = 1
 MAP_TASK = 0
 REDUCE_TASK = 1
 port_number = 22221
-job_id = 0
+
 
 tasks = TaskPriorityQueue()
 resources = ResourcePriorityQueue()

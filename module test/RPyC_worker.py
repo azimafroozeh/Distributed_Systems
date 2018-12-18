@@ -19,7 +19,15 @@ from rpyc.utils.authenticators import SSLAuthenticator
 from rpyc.lib import setup_logger
 from rpyc.core import SlaveService
 from rpyc import Service
+import _thread
+def heatbeat(self):
+    "send msg to self.connection_ip"
 class SlaveService1(SlaveService):
+    # connection_ip=None
+    # def __init__(self):
+    #     _thread.start_new_thread(heatbeat,self)
+    #     super(SlaveService1,self).__init__()
+
     def udf(self,f,parameters):
         print(type(parameters))
         result=f(**eval(parameters))
@@ -47,7 +55,9 @@ class SlaveService1(SlaveService):
         result = []
         for file in input_list:
             with open(file,'r') as f:
-                result.extend(function(f.read()))
+                text=f.read()
+                print(text)
+                result.extend(function(text))
         for pair in result:
             assigned_id = self.key2interfile(pair[0], inter_split)
             # print(assigned_id)
