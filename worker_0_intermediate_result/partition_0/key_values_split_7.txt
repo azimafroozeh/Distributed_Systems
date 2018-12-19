@@ -1,6 +1,0 @@
-mapreduce	1
-many	1
-programming	1
-love	1
-love	1
-love	1

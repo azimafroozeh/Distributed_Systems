@@ -1,1 +1,0 @@
-A MapReduce program is composed of a map procedure Kubrick Stanley
