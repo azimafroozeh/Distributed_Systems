@@ -288,7 +288,7 @@ def word_count_map(split_number, worker_id):
             writer.writerow([key] + [1])
     
     return "done11"
-            
+    
 def read_all_csv(path):
     print("sending infromatiosn")
     import csv
@@ -299,14 +299,12 @@ def read_all_csv(path):
     #print(files)
     result = []
     for file in files:
+        print(file)
         reader = csv.reader(open(file), delimiter='\t')
-        for row in reader:
-            if(row is None):
-                continue
-                print("ppppppppppppppppppppppppppppppppppppppp")
-            print(row)
-            yield row
-    #print(result)  
+        result.extend([row for row in reader])
+        
+    #print(result)
+    return result            
 
 def hello1():
     import os
@@ -325,10 +323,13 @@ def word_count_reduce(workers, partition):
     import csv
     import os
     import sys
+    import requests
     data = []
     result = {}
     print(partition)
     print(workers)
+    #response  = requests.get('http://localhost:8000/key_values_split_8.txt')
+    #print(response.text)
     for worker in workers:
         print(worker)
         path = worker.path + "/partition_"+  str(partition)
@@ -339,14 +340,23 @@ def word_count_reduce(workers, partition):
             print("Ddddddddddddddddddddddddddddd")
         else:
             print("sfasfa")
-            remote_func = worker.conn.namespace['read_all_csv']
+            sum = 0
+            remote_func = worker.conn.namespace['read_all_csv'] 
             try:
                 data1 = remote_func(path)
-                print(path)
+                print(type(data1))
+                a = str(data1)
+                text_file = open("Output.txt", "w")
+                text_file.write(a)
+                text_file.close()
                 for d in data1:
                     if(d is None):
                         print("dddddddddddddddddD")
                         continue
+                    print(str(d))
+                    print(d)
+                    sum += len(str(d))
+                    print(sum)
                     key = d[0]
                     print(d[0])
                     data = d[1]
