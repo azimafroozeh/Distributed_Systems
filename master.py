@@ -12,6 +12,7 @@ class Worker:
     port_number = None
     id = None
     path = None
+    ip = None
 
     def __init__(self):
         global port_number
@@ -177,7 +178,7 @@ def heartbeat(thread_name):
     while True:
         for worker in workers:
             try:
-                ping_conn = rpyc.classic.connect("34.207.230.231", port=worker.port_number)
+                ping_conn = rpyc.classic.connect(worker.ip, port=22222)
             except:
                 workers.remove(worker)
                 for resource in resources.queue:
@@ -230,6 +231,8 @@ Map_finished = 0
 
 _thread.start_new_thread(scheduler, ("SchedulerThread",))
 _thread.start_new_thread(heartbeat, ("HeartBeatThread",))
+
+map_ips = ["52.3.129.76", "3.84.0.82", "3.83.24.246", "3.83.190.228"]
 
 conn_map = {}
 
@@ -394,11 +397,12 @@ while True:
     command = input()
     if command == "a":
         try:
-            conn = rpyc.classic.connect("34.207.230.231", port=port_number)
+            conn = rpyc.classic.connect(map_ips[number_of_workers], port=22222)
         except:
             print("Worker is not running on port=", port_number)
         else:
             worker = Worker()
+            worker.ip = map_ips[number_of_workers]
             worker.conn = conn
             worker.conn.execute(wc_txt)
             worker.id = number_of_workers
@@ -410,7 +414,7 @@ while True:
             # in real node
             pwd = ros.getcwd()
             #pwd = "/Users/azimafroozeh/PycharmProjects/DistributedSystem"
-            parent_dic = pwd + "/worker_" + str(worker.id) + "_intermediate_result"
+            parent_dic = "/home/ec2-user/"+ "/worker_" + str(worker.id) + "_intermediate_result"
             print(parent_dic)
             if not ros.path.exists(parent_dic):
                 ros.makedirs(parent_dic, 755 )

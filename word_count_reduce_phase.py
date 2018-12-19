@@ -47,7 +47,7 @@ def read_all_csv(path):
 #print(read_all_csv("/Users/azimafroozeh/PycharmProjects/DistributedSystem/worker1/partition0"))
 #word_count_reduce()
 try:
-    conn1 = rpyc.classic.connect("34.207.230.231", port=22221)
+    conn1 = rpyc.classic.connect("3.83.24.246", port=22222)
 except:
     print(sys.exc_info()[0])
 else:
