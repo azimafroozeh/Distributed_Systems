@@ -153,7 +153,7 @@ def scheduler(threadName):
                     deleted_task.worker.tasks.append(deleted_task)
                     deleted_task.resource = deleted_resource
                     try:
-                        deleted_task.conn = rpyc.classic.connect("localhost", port=deleted_resource.worker.port_number)
+                        deleted_task.conn = rpyc.classic.connect(deleted_resource.worker.ip, port=22222)
                     except:
                         print("Ddddddddddddddddddddddddddddd")
                     else:
@@ -161,9 +161,10 @@ def scheduler(threadName):
                         deleted_task.remote_func = deleted_task.conn.namespace['word_count_map']
                         deleted_task.func = rpyc.async_(deleted_task.remote_func)
                         deleted_task.result = deleted_task.func(deleted_task.info, deleted_resource.worker.id)
-                        # deleted_task.result.add_callback(r_func(deleted_resource))
+                        #deleted_task.result.add_callback(r_func(deleted_resource))
                         _thread.start_new_thread(result, ("SchedulerThread", deleted_task.result, deleted_resource))
 
+#def new_result():
 
 def result(thread_name, result, resource):
     while not result.ready:
@@ -264,7 +265,7 @@ def word_count_map(split_number, worker_id):
     import csv
     from collections import Counter
     import hashlib
-    path = "/Users/azimafroozeh/PycharmProjects/DistributedSystem/"
+    path = "/efs/"
     with open(path + "input/" + str(split_number) + ".txt", 'r') as f:
         text = f.read()
     text = text.lower()
@@ -274,10 +275,10 @@ def word_count_map(split_number, worker_id):
     # for key in text.split():
        # key_values[key] = 1;
     # word_list=map(lambda x:x+'1',word_list)
-
+    path1 = "/home/ec2-user/"
     #key_values = Counter(word_list).most_common()
-    f0 = open(path + "worker_" + str(worker_id) + "_intermediate_result/partition_0" + "/key_values_split_" + str(split_number) + ".txt", 'w')
-    f1 = open(path + "worker_" + str(worker_id) + "_intermediate_result/partition_1" + "/key_values_split_" + str(split_number) + ".txt", 'w')
+    f0 = open(path1 + "worker_" + str(worker_id) + "_intermediate_result/partition_0" + "/key_values_split_" + str(split_number) + ".txt", 'w')
+    f1 = open(path1 + "worker_" + str(worker_id) + "_intermediate_result/partition_1" + "/key_values_split_" + str(split_number) + ".txt", 'w')
     
     print(f1)
     print(f0)
@@ -414,17 +415,17 @@ while True:
             # in real node
             pwd = ros.getcwd()
             #pwd = "/Users/azimafroozeh/PycharmProjects/DistributedSystem"
-            parent_dic = "/home/ec2-user/"+ "/worker_" + str(worker.id) + "_intermediate_result"
+            parent_dic = "/home/ec2-user"+ "/worker_" + str(worker.id) + "_intermediate_result"
             print(parent_dic)
             if not ros.path.exists(parent_dic):
-                ros.makedirs(parent_dic, 755 )
+                ros.makedirs(parent_dic, 511 )
             ros.chdir(parent_dic)
             for i in range(2):
                 partition_dic = parent_dic + "/partition_" + str(i)
                 if not ros.path.exists(partition_dic):
                     ros.makedirs(partition_dic)
             worker.path = parent_dic
-            print("Added Worker on Port Number", port_number - 1)
+            print("Added Worker on Port Number", "22222")
             print("Number of workers: ", number_of_workers)
             print("")
 
