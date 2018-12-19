@@ -1,10 +1,8 @@
-#!/Users/azimafroozeh/PycharmProjects/DistributedSystem/venv/bin/python
 """
 classic rpyc server (threaded, forking or std) running a SlaveService
 usage:
     rpyc_classic.py                         # default settings
     rpyc_classic.py -m forking -p 12345     # custom settings
-
     # ssl-authenticated server (keyfile and certfile are required)
     rpyc_classic.py --ssl-keyfile keyfile.pem --ssl-certfile certfile.pem --ssl-cafile cafile.pem
 """
@@ -19,7 +17,64 @@ from rpyc.utils.registry import UDPRegistryClient, TCPRegistryClient
 from rpyc.utils.authenticators import SSLAuthenticator
 from rpyc.lib import setup_logger
 from rpyc.core import SlaveService
+from rpyc import Service
+import _thread
 
+class Worker:
+
+    conn = None
+    port_number = None
+    id = None
+    path = None
+
+    def __init__(self):
+        global port_number
+        self.tasks = []
+        self.status = 0
+        self.port_number = port_number
+        port_number += 1
+
+class SlaveService1(SlaveService):
+    # connection_ip=None
+    # def __init__(self):
+    #     _thread.start_new_thread(heatbeat,self)
+    #     super(SlaveService1,self).__init__()
+
+    def word_count_reduce(self,workers, partition):
+        print("reduce task")
+        print("X")
+        print("test")
+        import rpyc
+        import csv
+        data = []
+        print(partition)
+        print(workers)
+        for worker in workers:
+            print(worker)
+            path = worker.path + "/partition_" + str(partition)
+            print(path)
+            try:
+                conn = rpyc.classic.connect("localhost", port=worker.port_number)
+            except:
+                print("Ddddddddddddddddddddddddddddd")
+            else:
+                print("sfasfa")
+                remote_func = worker.conn.namespace['read_all_csv']
+                data1 = remote_func(path)
+                print(path)
+                # print(data1)
+                data.extend(data1)
+        result = {}
+        for key, value in data:
+            if key in result:
+                result[key] += 1
+            else:
+                result[key] = 1
+        print(result)
+        f = open("/Users/azimafroozeh/PycharmProjects/DistributedSystem/output" + "/partition_ " + str(partition), 'w')
+        f.write(str(result))
+        f.close()
+        return ("dddddddooooooneee")
 
 class ClassicServer(cli.Application):
     mode = cli.SwitchAttr(["-m", "--mode"], cli.Set("threaded", "forking", "stdio", "oneshot"),
@@ -94,13 +149,13 @@ class ClassicServer(cli.Application):
             self._serve_stdio()
 
     def _serve_mode(self, factory):
-        t = factory(SlaveService, hostname = self.host, port = self.port,
+        t = factory(SlaveService1, hostname = self.host, port = self.port,
             reuse_addr = True, ipv6 = self.ipv6, authenticator = self.authenticator,
             registrar = self.registrar, auto_register = self.auto_register)
         t.start()
 
     def _serve_oneshot(self):
-        t = OneShotServer(SlaveService, hostname = self.host, port = self.port,
+        t = OneShotServer(SlaveService1, hostname = self.host, port = self.port,
             reuse_addr = True, ipv6 = self.ipv6, authenticator = self.authenticator,
             registrar = self.registrar, auto_register = self.auto_register)
         sys.stdout.write("rpyc-oneshot\n")
@@ -122,9 +177,11 @@ class ClassicServer(cli.Application):
                 print( "User interrupt!" )
         finally:
             conn.close()
+    # def exposed_udf(self,f,parameters):
+    #     print(type(parameters))
+    #     result=f(**eval(parameters))
+    #     return result
 
-
-
-if __name__ == "__main__":
-    ClassicServer.run()
-
+#
+# if _name_ == "_main_":
+ClassicServer.run()

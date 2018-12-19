@@ -138,7 +138,6 @@ def scheduler(threadName):
     global tasks
     while True:
         if tasks.is_empty():
-            time.sleep(5)
             continue;
         else:
             while not tasks.is_empty() and not resources.is_empty():
@@ -146,6 +145,7 @@ def scheduler(threadName):
                     print("jobId: ", deleted_task.job_id, "| Type(0=M,1=R): ", deleted_task.type, "| splitNumber: ",
                           deleted_task.info, "| thread: ", threadName, "| priority: ", deleted_task.priority)
                     deleted_resource = resources.delete()
+                    print(deleted_resource.worker.id)
                     print("jobId: ", deleted_task.job_id, "| Type(0=M,1=R): ", deleted_task.type, "| splitNumber: ",
                           deleted_task.info, "| thread: ", threadName, "| priority: ", deleted_task.priority, file=deleted_resource.worker.conn.modules.sys.stdout)
                     deleted_task.worker = deleted_resource.worker
@@ -160,15 +160,17 @@ def scheduler(threadName):
                         deleted_task.remote_func = deleted_task.conn.namespace['word_count_map']
                         deleted_task.func = rpyc.async_(deleted_task.remote_func)
                         deleted_task.result = deleted_task.func(deleted_task.info, deleted_resource.worker.id)
-                        deleted_task.result.add_callback(r_func(deleted_resource))
-                        #_thread.start_new_thread(result, ("SchedulerThread", deleted_task))
+                        # deleted_task.result.add_callback(r_func(deleted_resource))
+                        _thread.start_new_thread(result, ("SchedulerThread", deleted_task.result, deleted_resource))
 
 
-def result(thread_name, task):
-    while not task.result:
+def result(thread_name, result, resource):
+    while not result.ready:
         continue
-    print(task.result.value)
-    resources.insert(task.resource)
+    global Map_finished
+    print(result.value)
+    Map_finished += 1
+    resources.insert(resource)
 
 
 def heartbeat(thread_name):
@@ -211,7 +213,7 @@ LIVE = 0
 FAILED = 1
 MAPPING = 2
 REDUCING = 3
-NUMBER_OF_RESOURCE_PER_WORKER_NODE = 5
+NUMBER_OF_RESOURCE_PER_WORKER_NODE = 1
 TASK_NUMBERS = 10
 NUMBER_OF_TASKS = 10
 NUMBER_OF_TASKS_PER_WORKER = 1
@@ -252,6 +254,9 @@ def WC():
 
 
 def word_count_map(split_number, worker_id):
+    from random import randint
+    import time
+    #time.sleep(randint(0, 9))
     print("running")
     import csv
     from collections import Counter
@@ -281,6 +286,8 @@ def word_count_map(split_number, worker_id):
         else:
             writer = csv.writer(f1, delimiter='\t')
             writer.writerow([key] + [1])
+    
+    return "done11"
             
 def read_all_csv(path):
     print("sending infromatiosn")
@@ -293,9 +300,13 @@ def read_all_csv(path):
     result = []
     for file in files:
         reader = csv.reader(open(file), delimiter='\t')
-        result.extend([row for row in reader])
-    print(result)
-    return result  
+        for row in reader:
+            if(row is None):
+                continue
+                print("ppppppppppppppppppppppppppppppppppppppp")
+            print(row)
+            yield row
+    #print(result)  
 
 def hello1():
     import os
@@ -309,30 +320,51 @@ def heartbeat():
 reduce_task_txt = """
 def word_count_reduce(workers, partition):
     print("reduce task")
+    print("test")
     import rpyc
     import csv
+    import os
+    import sys
     data = []
+    result = {}
+    print(partition)
+    print(workers)
     for worker in workers:
+        print(worker)
         path = worker.path + "/partition_"+  str(partition)
+        print(path)
         try:
             conn = rpyc.classic.connect("localhost", port=worker.port_number)
         except:
             print("Ddddddddddddddddddddddddddddd")
         else:
+            print("sfasfa")
             remote_func = worker.conn.namespace['read_all_csv']
-            data1 = remote_func(path)
-            print(data1)
-            data.extend(data1)
-    result = {}
-    for key, value in data:
-        if key in result:
-            result[key] += 1
-        else:
-            result[key] = 1
+            try:
+                data1 = remote_func(path)
+                print(path)
+                for d in data1:
+                    if(d is None):
+                        print("dddddddddddddddddD")
+                        continue
+                    key = d[0]
+                    print(d[0])
+                    data = d[1]
+                    print(d[1])
+                    if key in result:
+                        result[key] += 1
+                    else:
+                        result[key] = 1
+            except Exception as e:
+                exc_type, exc_obj, exc_tb = sys.exc_info()
+                fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                print(exc_type, fname, exc_tb.tb_lineno)                
+        
     print(result)
     f = open("/Users/azimafroozeh/PycharmProjects/DistributedSystem/output" + "/partition_ " + str(partition),'w')
     f.write(str(result))
     f.close()
+    return("dddddddooooooneee")
     
 """
 
@@ -357,10 +389,10 @@ while True:
             workers.append(worker)
             number_of_workers += 1
             for i in range(NUMBER_OF_RESOURCE_PER_WORKER_NODE):
-                resources.insert(Resource(worker, i))
+                resources.insert(Resource(worker, 0))
             ros = conn.modules.os
             # in real node
-            # pwd = ros.getcwd()
+            # pwd = os.getcwd()
             pwd = "/Users/azimafroozeh/PycharmProjects/DistributedSystem"
             parent_dic = pwd + "/worker_" + str(worker.id) + "_intermediate_result"
             print(parent_dic)
@@ -392,17 +424,25 @@ while True:
 
     elif command == 'r':
         try:
-            conn1 = rpyc.classic.connect("localhost", port=22225)
-            conn2 = rpyc.classic.connect("localhost", port=22226)
+            connn1 = rpyc.classic.connect("localhost", port=22225)
+            connn2 = rpyc.classic.connect("localhost", port=22226)
         except:
             print("Ddddddddddddddddddddddddddddd")
         else:
-            conn1.execute(reduce_task_txt)
-            remote_func1 = conn1.namespace['word_count_reduce']
-            remote_func1(workers, 0)
-            conn2.execute(reduce_task_txt)
-            remote_func2= conn2.namespace['word_count_reduce']
-            remote_func2(workers, 1)
+            connn2.execute(reduce_task_txt)
+            remote_func1 = connn2.namespace['word_count_reduce']
+            result = remote_func1(workers, 0)
+            for worker in workers:
+                print
+            result1 = remote_func1(workers, 0)
+            print(result1)
+            connn2.execute(reduce_task_txt)
+            remote_func2 = connn2.namespace['word_count_reduce']
+            func2 = rpyc.async_(remote_func2)
+            result2 = func2(workers, 1)
+            print(result2)
+            result2.set_expiry(10000000000000)
+
     # 1 map node + 2 reduce node
     # Delete Worker Intermediate Result
     # Press a to add one worker
@@ -417,20 +457,23 @@ while True:
 
         while Map_finished != NUMBER_OF_TASKS:
             continue
+        t1 = time.perf_counter()
+        print(str(t1 - t0))
 
         try:
-            conn1 = rpyc.classic.connect("localhost", port=22225)
-            conn2 = rpyc.classic.connect("localhost", port=22226)
+            connn1 = rpyc.classic.connect("localhost", port=22225)
+            connn2 = rpyc.classic.connect("localhost", port=22226)
         except:
             print("error happened")
         else:
-            conn1.execute(reduce_task_txt)
-            remote_func1 = conn1.namespace['word_count_reduce']
-            remote_func1(workers, 0)
-            conn2.execute(reduce_task_txt)
-            remote_func2= conn2.namespace['word_count_reduce']
+            connn1.execute(reduce_task_txt)
+            remote_func1 = connn1.namespace['word_count_reduce']
+            result = remote_func1(workers, 0)
+
+            connn2.execute(reduce_task_txt)
+            remote_func2 = connn2.namespace['word_count_reduce']
             remote_func2(workers, 1)
-        t1 = time.perf_counter()
+
         print("t1: 1Map node + 2 reduce node finished at" + str(t1))
         print("duration time = " + str(t1 - t0))
         Map_finished = 0
