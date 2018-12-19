@@ -177,7 +177,7 @@ def heartbeat(thread_name):
     while True:
         for worker in workers:
             try:
-                ping_conn = rpyc.classic.connect("localhost", port=worker.port_number)
+                ping_conn = rpyc.classic.connect("34.207.230.231", port=worker.port_number)
             except:
                 workers.remove(worker)
                 for resource in resources.queue:
@@ -344,23 +344,28 @@ def word_count_reduce(workers, partition):
             remote_func = worker.conn.namespace['read_all_csv'] 
             try:
                 data1 = remote_func(path)
-                print(type(data1))
+                print("before")
                 a = str(data1)
-                text_file = open("Output.txt", "w")
-                text_file.write(a)
-                text_file.close()
-                for d in data1:
+                data2 = eval(a)
+                print("after")
+                #print(type(data1))
+                #a = str(data1)
+                #print(eval(a))
+                #text_file = open("Output.txt", "w")
+                #text_file.write(a)
+                #text_file.close()
+                for d in data2:
                     if(d is None):
                         print("dddddddddddddddddD")
                         continue
-                    print(str(d))
-                    print(d)
+                    #print(str(d))
+                    #print(d)
                     sum += len(str(d))
-                    print(sum)
+                    #print(sum)
                     key = d[0]
                     print(d[0])
                     data = d[1]
-                    print(d[1])
+                    #print(d[1])
                     if key in result:
                         result[key] += 1
                     else:
@@ -370,8 +375,9 @@ def word_count_reduce(workers, partition):
                 fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
                 print(exc_type, fname, exc_tb.tb_lineno)                
         
-    print(result)
-    f = open("/Users/azimafroozeh/PycharmProjects/DistributedSystem/output" + "/partition_ " + str(partition),'w')
+    #print(result)
+    print("vb")
+    f = open("/Users/azimafroozeh/PycharmProjects/DistributedSystem/output" + "/partition_" + str(partition),'w')
     f.write(str(result))
     f.close()
     return("dddddddooooooneee")
@@ -388,7 +394,7 @@ while True:
     command = input()
     if command == "a":
         try:
-            conn = rpyc.classic.connect("localhost", port=port_number)
+            conn = rpyc.classic.connect("34.207.230.231", port=port_number)
         except:
             print("Worker is not running on port=", port_number)
         else:
@@ -402,12 +408,12 @@ while True:
                 resources.insert(Resource(worker, 0))
             ros = conn.modules.os
             # in real node
-            # pwd = os.getcwd()
-            pwd = "/Users/azimafroozeh/PycharmProjects/DistributedSystem"
+            pwd = ros.getcwd()
+            #pwd = "/Users/azimafroozeh/PycharmProjects/DistributedSystem"
             parent_dic = pwd + "/worker_" + str(worker.id) + "_intermediate_result"
             print(parent_dic)
             if not ros.path.exists(parent_dic):
-                ros.makedirs(parent_dic)
+                ros.makedirs(parent_dic, 755 )
             ros.chdir(parent_dic)
             for i in range(2):
                 partition_dic = parent_dic + "/partition_" + str(i)
@@ -441,18 +447,15 @@ while True:
         else:
             connn2.execute(reduce_task_txt)
             remote_func1 = connn2.namespace['word_count_reduce']
-            result = remote_func1(workers, 0)
-            for worker in workers:
-                print
+            #result = remote_func1(workers, 0)
+            #for worker in workers:
+                #print
             result1 = remote_func1(workers, 0)
             print(result1)
-            connn2.execute(reduce_task_txt)
-            remote_func2 = connn2.namespace['word_count_reduce']
-            func2 = rpyc.async_(remote_func2)
-            result2 = func2(workers, 1)
+            connn1.execute(reduce_task_txt)
+            remote_func2 = connn1.namespace['word_count_reduce']
+            result2 = remote_func2(workers, 1)
             print(result2)
-            result2.set_expiry(10000000000000)
-
     # 1 map node + 2 reduce node
     # Delete Worker Intermediate Result
     # Press a to add one worker
@@ -474,18 +477,21 @@ while True:
             connn1 = rpyc.classic.connect("localhost", port=22225)
             connn2 = rpyc.classic.connect("localhost", port=22226)
         except:
-            print("error happened")
+            print("Ddddddddddddddddddddddddddddd")
         else:
-            connn1.execute(reduce_task_txt)
-            remote_func1 = connn1.namespace['word_count_reduce']
-            result = remote_func1(workers, 0)
-
             connn2.execute(reduce_task_txt)
-            remote_func2 = connn2.namespace['word_count_reduce']
-            remote_func2(workers, 1)
+            remote_func1 = connn2.namespace['word_count_reduce']
+            #result = remote_func1(workers, 0)
+            #for worker in workers:
+                #print
+            result1 = remote_func1(workers, 0)
+            print(result1)
+            connn1.execute(reduce_task_txt)
+            remote_func2 = connn1.namespace['word_count_reduce']
+            result2 = remote_func2(workers, 1)
+            print(result2)
 
-        print("t1: 1Map node + 2 reduce node finished at" + str(t1))
-        print("duration time = " + str(t1 - t0))
+
         Map_finished = 0
 
 
