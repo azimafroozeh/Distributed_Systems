@@ -1,20 +1,22 @@
 def length_count_map(split_number, worker_id):
+    from random import randint
+    import time
+    # time.sleep(randint(0, 9))
+    print("running")
     import csv
     from collections import Counter
     import hashlib
-    path = "/Users/azimafroozeh/PycharmProjects/DistributedSystem/"
+    path = "/efs/"
     with open(path + "input/" + str(split_number) + ".txt", 'r') as f:
         text = f.read()
     text = text.lower()
-    # split returns a list of words delimited by sequences of whitespace (including tabs, newlines, etc, like re's \s)
-    key_values = {}
-    # for key in text.split():
-       # key_values[key] = 1;
-    # word_list=map(lambda x:x+'1',word_list)
 
-    #key_values = Counter(word_list).most_common()
-    f0 = open(path + "worker" + str(worker_id) + "/partition0" + "/key_values_split_" + str(split_number) + ".txt", 'w')
-    f1 = open(path + "worker" + str(worker_id) + "/partition1" + "/key_values_split_" + str(split_number) + ".txt", 'w')
+    path1 = "/home/ec2-user/"
+    # key_values = Counter(word_list).most_common()
+    f0 = open(path1 + "worker_" + str(worker_id) + "intermediate_result/partition_0" + "/key_values_split" + str(
+        split_number) + ".txt", 'w')
+    f1 = open(path1 + "worker_" + str(worker_id) + "intermediate_result/partition_1" + "/key_values_split" + str(
+        split_number) + ".txt", 'w')
 
     for key in text.split():
         #hash_object = hashlib.md5(bytes(key, 'utf-8'))
@@ -24,3 +26,5 @@ def length_count_map(split_number, worker_id):
         else:
             writer = csv.writer(f1, delimiter='\t')
             writer.writerow([len(key)] + [1])
+
+    return "done11"
