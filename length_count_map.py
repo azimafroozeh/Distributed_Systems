@@ -20,7 +20,7 @@ def length_count_map(split_number, worker_id):
         #hash_object = hashlib.md5(bytes(key, 'utf-8'))
         if len(key)%2 == 0:
             writer = csv.writer(f0, delimiter='\t')
-            writer.writerow(len(key) + [1])
+            writer.writerow([len(key)] + [1])
         else:
             writer = csv.writer(f1, delimiter='\t')
-            writer.writerow(len(key) + [1])
+            writer.writerow([len(key)] + [1])
