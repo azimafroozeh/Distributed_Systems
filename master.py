@@ -147,8 +147,8 @@ def scheduler(threadName):
                           deleted_task.info, "| thread: ", threadName, "| priority: ", deleted_task.priority)
                     deleted_resource = resources.delete()
                     print(deleted_resource.worker.id)
-                    print("jobId: ", deleted_task.job_id, "| Type(0=M,1=R): ", deleted_task.type, "| splitNumber: ",
-                          deleted_task.info, "| thread: ", threadName, "| priority: ", deleted_task.priority, file=deleted_resource.worker.conn.modules.sys.stdout)
+                    #print("jobId: ", deleted_task.job_id, "| Type(0=M,1=R): ", deleted_task.type, "| splitNumber: ",
+                          #deleted_task.info, "| thread: ", threadName, "| priority: ", deleted_task.priority, file=deleted_resource.worker.conn.modules.sys.stdout)
                     deleted_task.worker = deleted_resource.worker
                     deleted_task.worker.tasks.append(deleted_task)
                     deleted_task.resource = deleted_resource
@@ -432,9 +432,20 @@ while True:
     elif command == "e":
         break
     elif command == 's':
+        t0 = time.perf_counter()
         for i in range(NUMBER_OF_TASKS):
             tasks.insert(Task(i, 3))
         job_id += 1
+
+        while Map_finished != NUMBER_OF_TASKS:
+            #print("no")
+            continue
+
+        t1 = time.perf_counter()
+        print("time is :")
+        print(str(t1 - t0))
+
+        Map_finished = 0
 
     elif command == 't':
         while not resources.is_empty():

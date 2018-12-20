@@ -11,7 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/DistributedSystem$master.coverage" NAME="master Coverage Results" MODIFIED="1545251367182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DistributedSystem$master.coverage" NAME="master Coverage Results" MODIFIED="1545335725064" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DistributedSystem$rpyc_classic.coverage" NAME="rpyc_classic Coverage Results" MODIFIED="1543598503216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/bin" />
     <SUITE FILE_PATH="coverage/DistributedSystem$wc.coverage" NAME="wc Coverage Results" MODIFIED="1543793163034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DistributedSystem$client.coverage" NAME="master Coverage Results" MODIFIED="1543856413820" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -56,8 +56,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/master.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="167" column="4" selection-start-line="167" selection-start-column="4" selection-end-line="167" selection-end-column="4" />
+            <state relative-caret-position="391">
+              <caret line="159" column="57" lean-forward="true" selection-start-line="159" selection-start-column="57" selection-end-line="159" selection-end-column="57" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -381,12 +381,12 @@
       <workItem from="1545167530717" duration="325000" />
       <workItem from="1545168041989" duration="24910000" />
       <workItem from="1545223550970" duration="1821000" />
-      <workItem from="1545247097111" duration="4307000" />
+      <workItem from="1545247097111" duration="7697000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="131663000" />
+    <option name="totallyTimeSpent" value="135053000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -399,7 +399,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="278" y="65" width="1621" height="922" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.80131364" visible="true" weight="0.22672577" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -663,8 +662,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/master.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="167" column="4" selection-start-line="167" selection-start-column="4" selection-end-line="167" selection-end-column="4" />
+        <state relative-caret-position="391">
+          <caret line="159" column="57" lean-forward="true" selection-start-line="159" selection-start-column="57" selection-end-line="159" selection-end-column="57" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
