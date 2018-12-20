@@ -158,7 +158,9 @@ def scheduler(threadName):
                         print("Ddddddddddddddddddddddddddddd")
                     else:
                         deleted_task.conn.execute(wc_txt)
-                        deleted_task.remote_func = deleted_task.conn.namespace['word_count_map']
+                        #deleted_task.remote_func = deleted_task.conn.namespace['word_count_map']
+                        deleted_task.remote_func = deleted_task.conn.namespace['length_count_map']
+
                         deleted_task.func = rpyc.async_(deleted_task.remote_func)
                         deleted_task.result = deleted_task.func(deleted_task.info, deleted_resource.worker.id)
                         #deleted_task.result.add_callback(r_func(deleted_resource))
@@ -313,6 +315,63 @@ def read_all_csv(path):
 def hello1():
     import os
     print("dgdddddddgd") 
+def local_test_length_count_map(split_number, worker_id):
+    import csv
+    from collections import Counter
+    import hashlib
+    path = "/Users/azimafroozeh/PycharmProjects/DistributedSystem/"
+    with open(path + "input/" + str(split_number) + ".txt", 'r') as f:
+        text = f.read()
+    text = text.lower()
+    # split returns a list of words delimited by sequences of whitespace (including tabs, newlines, etc, like re's \s)
+    key_values = {}
+    # for key in text.split():
+       # key_values[key] = 1;
+    # word_list=map(lambda x:x+'1',word_list)
+
+    #key_values = Counter(word_list).most_common()
+    f0 = open(path + "worker" + str(worker_id) + "/partition0" + "/key_values_split_" + str(split_number) + ".txt", 'w')
+    f1 = open(path + "worker" + str(worker_id) + "/partition1" + "/key_values_split_" + str(split_number) + ".txt", 'w')
+
+    for key in text.split():
+        #hash_object = hashlib.md5(bytes(key, 'utf-8'))
+        if len(key)%2 == 0:
+            writer = csv.writer(f0, delimiter='\t')
+            writer.writerow([len(key)] + [1])
+        else:
+            writer = csv.writer(f1, delimiter='\t')
+            writer.writerow([len(key)] + [1])
+            
+def length_count_map(split_number, worker_id):
+    from random import randint
+    import time
+    # time.sleep(randint(0, 9))
+    print("running")
+    import csv
+    from collections import Counter
+    import hashlib
+    path = "/efs/"
+    with open(path + "input/" + str(split_number) + ".txt", 'r') as f:
+        text = f.read()
+    text = text.lower()
+
+    path1 = "/home/ec2-user/"
+    # key_values = Counter(word_list).most_common()
+    f0 = open(path1 + "worker_" + str(worker_id) + "_intermediate_result/partition_0" + "/key_values_split_" + str(
+        split_number) + ".txt", 'w')
+    f1 = open(path1 + "worker_" + str(worker_id) + "_intermediate_result/partition_1" + "/key_values_split_" + str(
+        split_number) + ".txt", 'w')
+
+    for key in text.split():
+        #hash_object = hashlib.md5(bytes(key, 'utf-8'))
+        if len(key)%2 == 0:
+            writer = csv.writer(f0, delimiter='\t')
+            writer.writerow([len(key)] + [1])
+        else:
+            writer = csv.writer(f1, delimiter='\t')
+            writer.writerow([len(key)] + [1])
+
+    return "done11"
 """
 heartbeat_txt = """
 def heartbeat():
@@ -490,8 +549,8 @@ while True:
         print(str(t1 - t0))
 
         try:
-            connn1 = rpyc.classic.connect("localhost", port=22225)
-            connn2 = rpyc.classic.connect("localhost", port=22226)
+            connn1 = rpyc.classic.connect("3.84.180.136", port=22225)
+            connn2 = rpyc.classic.connect("3.83.13.27", port=22226)
         except:
             print("Ddddddddddddddddddddddddddddd")
         else:
