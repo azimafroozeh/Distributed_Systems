@@ -1,5 +1,6 @@
-import shutil
-source="module test\input\\text_text1"
-dest='sample/100000times/'
-for i in range(100000):
-    shutil.copyfile(source,dest+str(i))
+# import requests
+# # response=requests.get('http://localhost:8000/key_values_split_8.txt')
+# # print(response.text)
+with open("Output.txt") as f:
+    text=f.read()
+print(eval(text))
