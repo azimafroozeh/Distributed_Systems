@@ -1,6 +1,6 @@
 import rpyc
 import sys
-def word_count_reduce(workers, partition):
+def length_count_reduce(workers, partition):
     import rpyc
     print("dgdgd")
     for worker in workers:
