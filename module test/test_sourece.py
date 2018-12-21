@@ -16,12 +16,12 @@ conn=rpyc.classic.connect("localhost", port=18812)
 func_list=[conbain,ADD,MIN,conbain,return_list,read_csv]
 for f in func_list:
     conn.execute(getsource(f))
-cn=conn.namespace['read_csv']
-# print(type(cn()))
-# # print(cn())
-result=cn()
-result=list(result)
-for i in result:
-    print(i)
-conn=rpyc.classic.connect()
-conn.module.os.makedir()
+# cn=conn.namespace['read_csv']
+# # print(type(cn()))
+# # # print(cn())
+# result=cn()
+# result=list(result)
+# for i in result:
+#     print(i)
+f=conn.builtins.open("key_values_split_8.txt")
+print(f.read())

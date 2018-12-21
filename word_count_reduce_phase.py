@@ -1,6 +1,5 @@
 import rpyc
-import sys
-def index_reduce(workers, partition):
+def word_count_reduce(workers, partition):
     import rpyc
     print("dgdgd")
     for worker in workers:
@@ -10,14 +9,14 @@ def index_reduce(workers, partition):
         except:
             print("Ddddddddddddddddddddddddddddd")
         else:
-            remote_func = conn.namespace['read_all_csv']
-            data.extend(remote.func(path))
-    result = []
+            #remote_func = conn.namespace['read_all_csv']
+            data.extend(read_all_csv(path,conn))
+    result = {}
     for key, value in data:
         if key in result:
-            result[key] += [value]
+            result[key] += 1
         else:
-            result[key] = [value]
+            result[key] = 1
     print(result)
 
 
@@ -31,14 +30,14 @@ def hello3():
     print("hello3")
 
 
-def read_all_csv(path):
+def read_all_csv(path,conn):
     import csv
     import os
     files = os.listdir(path)
     files = [path+'/'+f for f in files]
     result = []
     for file in files:
-        reader = csv.reader(open(file), delimiter='\t')
+        reader = csv.reader(conn.builtins.open(file), delimiter='\t')
         result.extend([row for row in reader])
     return result
 # reader=csv.reader(open('intermediate_data\\text\partition0\key_values_split_0.txt'),delimiter='\t')
@@ -47,10 +46,9 @@ def read_all_csv(path):
 #print(read_all_csv("/Users/azimafroozeh/PycharmProjects/DistributedSystem/worker1/partition0"))
 #word_count_reduce()
 try:
-    conn1 = rpyc.classic.connect("3.83.24.246", port=22222)
+    conn1 = rpyc.classic.connect("localhost", port=22221)
 except:
-    print(sys.exc_info()[0])
+    print("Ddddddddddddddddddddddddddddd")
 else:
     conn1.execute(reduce_task_txt)
     remote_func = conn1.namespace['hello1']
-    remote_func()
