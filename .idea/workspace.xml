@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fcb46ec0-e4b2-4d70-9986-b5a59d09b792" name="Default Changelist" comment="" />
+    <list default="true" id="fcb46ec0-e4b2-4d70-9986-b5a59d09b792" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,8 +68,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/master.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="331" column="17" selection-start-line="331" selection-start-column="17" selection-end-line="331" selection-end-column="17" />
+            <state relative-caret-position="2789">
+              <caret line="347" column="14" selection-start-line="347" selection-start-column="14" selection-end-line="347" selection-end-column="14" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -75,13 +77,18 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/reference_from_paper_to_implemantation/worker_functions.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/reference_from_paper_to_implemantation/map_worker_fucntions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="69" selection-start-line="8" selection-start-column="69" selection-end-line="8" selection-end-column="69" />
+            <state relative-caret-position="-93">
+              <caret line="31" column="42" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="42" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/reference_from_paper_to_implemantation/reduce_worker_functions.py">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -150,8 +157,8 @@
         <option value="$PROJECT_DIR$/run.sh" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/word_count_reduce_phase.py" />
-        <option value="$PROJECT_DIR$/master.py" />
         <option value="$PROJECT_DIR$/reference_from_paper_to_implemantation/worker_functions.py" />
+        <option value="$PROJECT_DIR$/master.py" />
       </list>
     </option>
   </component>
@@ -367,12 +374,12 @@
       <workItem from="1544629027494" duration="2078000" />
       <workItem from="1544707754828" duration="1722000" />
       <workItem from="1545148688420" duration="5424000" />
-      <workItem from="1545397065511" duration="724000" />
+      <workItem from="1545397065511" duration="1600000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92003000" />
+    <option name="totallyTimeSpent" value="92879000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -385,7 +392,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="175" y="66" width="1621" height="922" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21912603" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -414,7 +420,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/worker3/partition1/KeyValues.txt" />
     <entry file="file://$PROJECT_DIR$/worker3/Partition2/KeyValues.txt" />
     <entry file="file://$PROJECT_DIR$/worker1/Partition2/KeyValues.txt" />
     <entry file="file://$PROJECT_DIR$/text_text" />
@@ -589,20 +594,27 @@
     <entry file="file://$PROJECT_DIR$/refrence-from-paper-to-implementation/worker-function">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/reference_from_paper_to_implemantation/worker_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/master.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="331" column="17" selection-start-line="331" selection-start-column="17" selection-end-line="331" selection-end-column="17" />
+        <state relative-caret-position="2789">
+          <caret line="347" column="14" selection-start-line="347" selection-start-column="14" selection-end-line="347" selection-end-column="14" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/reference_from_paper_to_implemantation/worker_functions.py">
+    <entry file="file://$PROJECT_DIR$/reference_from_paper_to_implemantation/map_worker_fucntions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="69" selection-start-line="8" selection-start-column="69" selection-end-line="8" selection-end-column="69" />
+        <state relative-caret-position="-93">
+          <caret line="31" column="42" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="42" />
         </state>
       </provider>
     </entry>
