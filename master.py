@@ -330,8 +330,6 @@ def word_count_reduce(workers, partition):
         else:
             result[key] = 1
     print(result)
-    f = open("/Users/azimafroozeh/PycharmProjects/DistributedSystem/output" + "/partition_ " + str(partition),'w')
-    f.write(str(result))
     f.close()
     
 """
