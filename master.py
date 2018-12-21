@@ -21,6 +21,21 @@ class Worker:
         self.port_number = port_number
         port_number += 1
 
+class ReduceWorker:
+
+    conn = None
+    port_number = None
+    id = None
+    path = None
+    ip = None
+
+    def __init__(self):
+        global port_number
+        self.tasks = []
+        self.status = 0
+        self.port_number = port_number
+        port_number += 1
+
 
 # class for Task with data , info and priority
 class Task:
@@ -158,8 +173,8 @@ def scheduler(threadName):
                         print("Ddddddddddddddddddddddddddddd")
                     else:
                         deleted_task.conn.execute(wc_txt)
-                        #deleted_task.remote_func = deleted_task.conn.namespace['word_count_map']
-                        deleted_task.remote_func = deleted_task.conn.namespace['length_count_map']
+                        deleted_task.remote_func = deleted_task.conn.namespace['word_count_map']
+                        #deleted_task.remote_func = deleted_task.conn.namespace['length_count_map']
 
                         deleted_task.func = rpyc.async_(deleted_task.remote_func)
                         deleted_task.result = deleted_task.func(deleted_task.info, deleted_resource.worker.id)
@@ -200,8 +215,32 @@ def heartbeat(thread_name):
             #func = rpyc.async_(remote_func)
             #result = func()
             #result.add_callback(hb_func(worker))
-        time.sleep(4)
+        time.sleep(1)
 
+def reduce_heartbeat(thread_name):
+    while True:
+        for worker in reduceworkers:
+            try:
+                ping_conn = rpyc.classic.connect(worker.ip, port=22222)
+            except:
+                reduceworkers.remove(worker)
+                for resource in resources.queue:
+                    if resource.worker == worker:
+                        resources.queue.remove(resource)
+
+                print(worker, "worker", worker.id, "died")
+                for task in worker.tasks:
+                    tasks.insert(task)
+
+            else:
+                print(worker, "worker", worker.id, "is alive")
+
+            #ping_conn.execute(heartbeat_txt)
+            #remote_func = ping_conn.namespace['heartbeat']
+            #func = rpyc.async_(remote_func)
+            #result = func()
+            #result.add_callback(hb_func(worker))
+        time.sleep(1)
 
 def r_func(resource):
     global Map_finished
@@ -229,13 +268,17 @@ NUMBER_OF_PARTITION = 2
 tasks = TaskPriorityQueue()
 resources = ResourcePriorityQueue()
 workers = []
+reduceworkers =[]
 number_of_workers = 0
+number_of_reduce_workers = 0
 Map_finished = 0
 
 _thread.start_new_thread(scheduler, ("SchedulerThread",))
 _thread.start_new_thread(heartbeat, ("HeartBeatThread",))
+_thread.start_new_thread(reduce_heartbeat, ("HeartBeatThread",))
 
-map_ips = ["52.3.129.76", "3.84.0.82", "3.83.24.246", "3.83.190.228"]
+map_ips = ["52.3.129.76", "54.165.81.245", "3.83.24.246", "3.83.190.228"]
+reduce_ips = ["3.84.180.136", "3.83.13.27", "34.207.230.231"]
 
 conn_map = {}
 
@@ -386,7 +429,7 @@ def word_count_reduce(workers, partition):
     import csv
     import os
     import sys
-    import requests
+    #import requests
     data = []
     result = {}
     print(partition)
@@ -398,7 +441,7 @@ def word_count_reduce(workers, partition):
         path = worker.path + "/partition_"+  str(partition)
         print(path)
         try:
-            conn = rpyc.classic.connect("localhost", port=worker.port_number)
+            conn = rpyc.classic.connect(worker.ip, port=22222)
         except:
             print("Ddddddddddddddddddddddddddddd")
         else:
@@ -408,6 +451,7 @@ def word_count_reduce(workers, partition):
             try:
                 data1 = remote_func(path)
                 print("before")
+                print("data1")
                 a = str(data1)
                 data2 = eval(a)
                 print("after")
@@ -428,7 +472,7 @@ def word_count_reduce(workers, partition):
                     key = d[0]
                     print(d[0])
                     data = d[1]
-                    #print(d[1])
+                    print(d[1])
                     if key in result:
                         result[key] += 1
                     else:
@@ -440,7 +484,7 @@ def word_count_reduce(workers, partition):
         
     #print(result)
     print("vb")
-    f = open("/Users/azimafroozeh/PycharmProjects/DistributedSystem/output" + "/partition_" + str(partition),'w')
+    f = open("/home/ec2-user/partition_" + str(partition),'w')
     f.write(str(result))
     f.close()
     return("dddddddooooooneee")
@@ -450,6 +494,55 @@ def word_count_reduce(workers, partition):
 reduce_task_txt1 = """
 
 """
+reduce_task_y = """
+def word_count_reduce(workers, partition):
+    import rpyc
+    print("dgdgd")
+    data = []
+    for worker in workers:
+        path = worker.path + "/partition_"+  str(partition)
+        try:
+            conn = rpyc.classic.connect(worker.ip, worker.port_number)
+        except:
+            print("Ddddddddddddddddddddddddddddd")
+        else:
+            #remote_func = worker.conn.namespace['read_all_csv']
+            data.extend(read_all_csv(path,conn))
+    result = {}
+    for key, value in data:
+        if key in result:
+            result[key] += 1
+        else:
+            result[key] = 1
+    print(result)
+
+
+
+        # produce final result
+def hello3():
+    print("hello3")
+
+
+def read_all_csv(path):
+    print("sending infromatiosn")
+    import csv
+    import os
+    print(path)
+    files = os.listdir(path)
+    files = [path+'/'+f for f in files]
+    #print(files)
+    result = []
+    for file in files:
+        print(file)
+        reader = csv.reader(open(file), delimiter='\t')
+        result.extend([row for row in reader])
+        
+    #print(result)
+    return result 
+
+
+"""
+
 
 
 while True:
@@ -488,6 +581,52 @@ while True:
             print("Number of workers: ", number_of_workers)
             print("")
 
+    if command == "b":
+        try:
+            conn = rpyc.classic.connect(reduce_ips[number_of_reduce_workers], port=22222)
+        except:
+            print("Reduce Worker is not running on port=22222")
+        else:
+            worker = ReduceWorker()
+            worker.ip = map_ips[number_of_reduce_workers]
+            worker.conn = conn
+            worker.conn.execute(reduce_task_txt)
+            worker.id = number_of_reduce_workers
+            reduceworkers.append(worker)
+            number_of_reduce_workers += 1
+            ros = conn.modules.os
+            # in real node
+            pwd = ros.getcwd()
+            # pwd = "/Users/azimafroozeh/PycharmProjects/DistributedSystem"
+            parent_dic = "/home/ec2-user" + "/output/"
+            print(parent_dic)
+            if not ros.path.exists(parent_dic):
+                ros.makedirs(parent_dic, 511)
+            ros.chdir(parent_dic)
+            parent_dic = "/home/ec2-user" + "/output/"
+            print(parent_dic)
+            if not ros.path.exists(parent_dic):
+                ros.makedirs(parent_dic, 511)
+            ros.chdir(parent_dic)
+            worker.path = parent_dic
+            print("Added Worker on Port Number", "22222")
+            print("Number of workers: ", number_of_workers)
+            print("")
+
+    if command == "c":
+        try:
+            conn = rpyc.classic.connect(reduce_ips[number_of_reduce_workers], port=22222)
+        except:
+            print("Reduce Worker is not running on port=22222")
+        else:
+            worker = ReduceWorker()
+            worker.ip = map_ips[number_of_workers]
+            worker.conn = conn
+            worker.conn.execute(reduce_task_txt)
+            worker.id = number_of_reduce_workers
+            reduceworkers.append(worker)
+            number_of_reduce_workers += 1
+
     elif command == "e":
         break
     elif command == 's':
@@ -501,8 +640,10 @@ while True:
             continue
 
         t1 = time.perf_counter()
-        print("time is :")
-        print(str(t1 - t0))
+        print("============================================")
+        print("Map tasks finished, time is : " + str(t1 - t0))
+        #print(str(t1 - t0))
+        print("============================================")
 
         Map_finished = 0
 
@@ -520,7 +661,7 @@ while True:
         except:
             print("Ddddddddddddddddddddddddddddd")
         else:
-            connn2.execute(reduce_task_txt)
+            connn2.execute(reduce_task_y)
             remote_func1 = connn2.namespace['word_count_reduce']
             #result = remote_func1(workers, 0)
             #for worker in workers:
@@ -568,6 +709,50 @@ while True:
 
 
         Map_finished = 0
+    #input
+    #map function
+    elif command == 'd1':
+        t0 = time.perf_counter()
+        for i in range(NUMBER_OF_TASKS):
+            tasks.insert(Task(i, 3))
+        job_id += 1
+
+        while Map_finished != NUMBER_OF_TASKS:
+            # print("no")
+            continue
+
+        t1 = time.perf_counter()
+        print("============================================")
+        print("Map tasks finished, time is : " + str(t1 - t0))
+        # print(str(t1 - t0))
+        print("============================================")
+        Map_finished = 0
+
+        try:
+            connn1 = rpyc.classic.connect("3.84.180.136", port=22222)
+            #connn2 = rpyc.classic.connect("3.83.13.27", port=22222)
+        except:
+            print("Ddddddddddddddddddddddddddddd")
+        else:
+            #connn2.execute(reduce_task_txt)
+            #remote_func1 = connn2.namespace['word_count_reduce']
+            #result = remote_func1(workers, 0)
+            #for worker in workers:
+                #print
+            #result1 = remote_func1(workers, 0)
+            #print(result1)
+            connn1.execute(reduce_task_txt)
+            remote_func2 = connn1.namespace['word_count_reduce']
+            result2 = remote_func2(workers, 1)
+            print(result2)
+
+        t2 = time.perf_counter()
+        print("============================================")
+        print("Reduce tasks finished, time is : " + str(t2 - t1))
+        # print(str(t1 - t0))
+        print("============================================")
+        Map_finished = 0
+
 
 
     else:
