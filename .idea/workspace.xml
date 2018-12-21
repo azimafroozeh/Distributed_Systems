@@ -1,75 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fcb46ec0-e4b2-4d70-9986-b5a59d09b792" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/master.py" beforeDir="false" afterPath="$PROJECT_DIR$/master.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/word_count_reduce_phase.py" beforeDir="false" afterPath="$PROJECT_DIR$/word_count_reduce_phase.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker1/partition0/key_values_split_0.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker1/partition0/key_values_split_3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker1/partition0/key_values_split_6.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker1/partition1/key_values_split_0.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker1/partition1/key_values_split_3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker1/partition1/key_values_split_6.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker2/partition0/key_values_split_0.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker2/partition0/key_values_split_1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker2/partition0/key_values_split_2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker2/partition0/key_values_split_3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker2/partition0/key_values_split_4.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker2/partition0/key_values_split_5.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker2/partition0/key_values_split_6.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker2/partition0/key_values_split_7.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker2/partition0/key_values_split_8.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker2/partition0/key_values_split_9.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker2/partition1/key_values_split_0.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker2/partition1/key_values_split_1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker2/partition1/key_values_split_2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker2/partition1/key_values_split_3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker2/partition1/key_values_split_4.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker2/partition1/key_values_split_5.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker2/partition1/key_values_split_6.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker2/partition1/key_values_split_7.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker2/partition1/key_values_split_8.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker2/partition1/key_values_split_9.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker3/partition0/key_values_split_2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker3/partition0/key_values_split_5.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker3/partition0/key_values_split_8.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker3/partition1/key_values_split_2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker3/partition1/key_values_split_5.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker3/partition1/key_values_split_8.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_0_intermediate_result/partition_0/key_values_split_0.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_0_intermediate_result/partition_0/key_values_split_1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_0_intermediate_result/partition_0/key_values_split_2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_0_intermediate_result/partition_0/key_values_split_3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_0_intermediate_result/partition_0/key_values_split_4.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_0_intermediate_result/partition_0/key_values_split_5.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_0_intermediate_result/partition_0/key_values_split_6.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_0_intermediate_result/partition_0/key_values_split_7.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_0_intermediate_result/partition_0/key_values_split_8.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_0_intermediate_result/partition_0/key_values_split_9.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_0_intermediate_result/partition_1/key_values_split_0.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_0_intermediate_result/partition_1/key_values_split_1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_0_intermediate_result/partition_1/key_values_split_2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_0_intermediate_result/partition_1/key_values_split_3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_0_intermediate_result/partition_1/key_values_split_4.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_0_intermediate_result/partition_1/key_values_split_5.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_0_intermediate_result/partition_1/key_values_split_6.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_0_intermediate_result/partition_1/key_values_split_7.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_0_intermediate_result/partition_1/key_values_split_8.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_0_intermediate_result/partition_1/key_values_split_9.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_1_intermediate_result/partition_0/key_values_split_1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_1_intermediate_result/partition_0/key_values_split_4.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_1_intermediate_result/partition_0/key_values_split_7.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_1_intermediate_result/partition_1/key_values_split_1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_1_intermediate_result/partition_1/key_values_split_4.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_1_intermediate_result/partition_1/key_values_split_7.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_2_intermediate_result/partition_0/key_values_split_2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_2_intermediate_result/partition_0/key_values_split_5.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_2_intermediate_result/partition_0/key_values_split_8.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_2_intermediate_result/partition_1/key_values_split_2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_2_intermediate_result/partition_1/key_values_split_5.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/worker_2_intermediate_result/partition_1/key_values_split_8.txt" beforeDir="false" />
-    </list>
+    <list default="true" id="fcb46ec0-e4b2-4d70-9986-b5a59d09b792" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +27,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/input/1.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state>
@@ -143,11 +75,20 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/reference_from_paper_to_implemantation/worker_functions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="69" selection-start-line="8" selection-start-column="69" selection-end-line="8" selection-end-column="69" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/output/partition_ 0">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="174" lean-forward="true" selection-start-column="174" selection-end-column="174" />
+              <caret column="174" selection-start-column="174" selection-end-column="174" />
             </state>
           </provider>
         </entry>
@@ -210,12 +151,13 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/word_count_reduce_phase.py" />
         <option value="$PROJECT_DIR$/master.py" />
+        <option value="$PROJECT_DIR$/reference_from_paper_to_implemantation/worker_functions.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="550" />
-    <option name="y" value="34" />
+    <option name="x" value="175" />
+    <option name="y" value="66" />
     <option name="width" value="1621" />
     <option name="height" value="922" />
   </component>
@@ -236,7 +178,12 @@
             <path>
               <item name="DistributedSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="DistributedSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="output" type="462c0819:PsiDirectoryNode" />
+              <item name="reference_from_paper_to_implemantation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DistributedSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DistributedSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="venv" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -420,11 +367,12 @@
       <workItem from="1544629027494" duration="2078000" />
       <workItem from="1544707754828" duration="1722000" />
       <workItem from="1545148688420" duration="5424000" />
+      <workItem from="1545397065511" duration="724000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91279000" />
+    <option name="totallyTimeSpent" value="92003000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -436,9 +384,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="28" width="1621" height="922" extended-state="0" />
+    <frame x="175" y="66" width="1621" height="922" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21659277" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21912603" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -452,7 +401,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49968335" weight="0.32891566" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5003167" side_tool="true" weight="0.32891566" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49841672" weight="0.27831325" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49841672" visible="true" weight="0.27831325" />
       <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.49968335" weight="0.32891566" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -465,8 +414,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/worker2/partition1/KeyValues.txt" />
-    <entry file="file://$PROJECT_DIR$/worker2/Partition2/KeyValues.txt" />
     <entry file="file://$PROJECT_DIR$/worker3/partition1/KeyValues.txt" />
     <entry file="file://$PROJECT_DIR$/worker3/Partition2/KeyValues.txt" />
     <entry file="file://$PROJECT_DIR$/worker1/Partition2/KeyValues.txt" />
@@ -480,39 +427,13 @@
     <entry file="file://$PROJECT_DIR$/worker1/partition0/key_values_split_9.txt" />
     <entry file="file://$PROJECT_DIR$/worker3/hash_testing.py" />
     <entry file="file://$PROJECT_DIR$/worker1/partition1/key_values_split_9.txt" />
-    <entry file="file://$PROJECT_DIR$/worker1/partition1/key_values_split_0.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/worker1/partition1/key_values_split_3.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/worker1/partition1/key_values_split_6.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/worker2/partition0/key_values_split_1.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/worker2/partition0/key_values_split_4.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="12" selection-start-column="12" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/worker2/partition0/key_values_split_7.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/worker1/partition0/key_values_split_6.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/worker1/partition1/key_values_split_0.txt" />
+    <entry file="file://$PROJECT_DIR$/worker1/partition1/key_values_split_3.txt" />
+    <entry file="file://$PROJECT_DIR$/worker1/partition1/key_values_split_6.txt" />
+    <entry file="file://$PROJECT_DIR$/worker2/partition0/key_values_split_1.txt" />
+    <entry file="file://$PROJECT_DIR$/worker2/partition0/key_values_split_4.txt" />
+    <entry file="file://$PROJECT_DIR$/worker2/partition0/key_values_split_7.txt" />
+    <entry file="file://$PROJECT_DIR$/worker1/partition0/key_values_split_6.txt" />
     <entry file="file://$PROJECT_DIR$/input/4.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -548,15 +469,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/worker_2_intermediate_result/partition_1/key_values_split_8.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/worker_1_intermediate_result/partition_1/key_values_split_4.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/worker_2_intermediate_result/partition_0/key_values_split_8.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/worker_2_intermediate_result/partition_1/key_values_split_8.txt" />
+    <entry file="file://$PROJECT_DIR$/worker_1_intermediate_result/partition_1/key_values_split_4.txt" />
+    <entry file="file://$PROJECT_DIR$/worker_2_intermediate_result/partition_0/key_values_split_8.txt" />
     <entry file="file://$PROJECT_DIR$/run.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -612,34 +527,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/input/2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="23" selection-start-column="23" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/worker1/partition0/key_values_split_0.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/worker1/partition0/key_values_split_3.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/input/3.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="38" selection-start-column="38" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/worker1/partition0/key_values_split_0.txt" />
+    <entry file="file://$PROJECT_DIR$/worker1/partition0/key_values_split_3.txt" />
     <entry file="file://$PROJECT_DIR$/worker_0_intermediate_result/partition_0/key_values_split_0.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -652,12 +541,53 @@
     <entry file="file://$PROJECT_DIR$/worker_0_intermediate_result/partition_0/key_values_split_9.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/input/0.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="36" selection-start-column="36" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="23" selection-start-column="23" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/3.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="38" selection-start-column="38" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/input/9.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="145" selection-start-column="145" selection-end-column="145" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/partition_ 0">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="174" selection-start-column="174" selection-end-column="174" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/partition_ 1">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/1.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="38" selection-start-column="38" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/refrence-from-paper-to-implementation/worker-function">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/master.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -669,27 +599,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/output/partition_ 1">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output/partition_ 0">
+    <entry file="file://$PROJECT_DIR$/reference_from_paper_to_implemantation/worker_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="174" lean-forward="true" selection-start-column="174" selection-end-column="174" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/input/0.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="36" selection-start-column="36" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/input/1.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="38" selection-start-column="38" selection-end-column="38" />
+        <state relative-caret-position="120">
+          <caret line="8" column="69" selection-start-line="8" selection-start-column="69" selection-end-line="8" selection-end-column="69" />
         </state>
       </provider>
     </entry>
