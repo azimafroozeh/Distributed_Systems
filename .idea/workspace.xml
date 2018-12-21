@@ -11,7 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/DistributedSystem$master.coverage" NAME="master Coverage Results" MODIFIED="1545362178579" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DistributedSystem$master.coverage" NAME="master Coverage Results" MODIFIED="1545375859560" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DistributedSystem$rpyc_classic.coverage" NAME="rpyc_classic Coverage Results" MODIFIED="1543598503216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/bin" />
     <SUITE FILE_PATH="coverage/DistributedSystem$wc.coverage" NAME="wc Coverage Results" MODIFIED="1543793163034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DistributedSystem$client.coverage" NAME="master Coverage Results" MODIFIED="1543856413820" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -39,7 +39,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/word_count_reduce_phase.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
+            <state relative-caret-position="765">
               <caret line="51" column="28" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
@@ -65,8 +65,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/master.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="722" column="28" selection-start-line="722" selection-start-column="28" selection-end-line="722" selection-end-column="28" />
+            <state relative-caret-position="164">
+              <caret line="237" column="61" selection-start-line="237" selection-start-column="61" selection-end-line="237" selection-end-column="61" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -77,7 +77,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/input/7.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
+            <state relative-caret-position="1080">
               <caret line="72" column="62" selection-start-line="72" selection-start-column="62" selection-end-line="72" selection-end-column="62" />
             </state>
           </provider>
@@ -123,6 +123,8 @@
       <find>nunc</find>
       <find>conseq</find>
       <find>risus</find>
+      <find>dddddddooooooneee</find>
+      <find>Map_finished</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -170,8 +172,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="58" />
-    <option name="y" value="48" />
+    <option name="x" value="504" />
+    <option name="y" value="58" />
     <option name="width" value="1621" />
     <option name="height" value="922" />
   </component>
@@ -181,7 +183,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -198,6 +199,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -380,11 +382,12 @@
       <workItem from="1545168041989" duration="24910000" />
       <workItem from="1545223550970" duration="1821000" />
       <workItem from="1545247097111" duration="26601000" />
+      <workItem from="1545368855851" duration="6670000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153957000" />
+    <option name="totallyTimeSpent" value="160627000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -396,9 +399,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="58" y="48" width="1621" height="922" extended-state="0" />
+    <frame x="238" y="60" width="1621" height="922" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.80131364" visible="true" weight="0.22672577" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.80131364" visible="true" weight="0.22925903" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.19868638" side_tool="true" weight="0.22165927" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -607,22 +611,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/output/partition_ 1" />
     <entry file="file://$PROJECT_DIR$/output/partition_ 0" />
-    <entry file="file://$PROJECT_DIR$/Output.txt">
-      <provider selected="true" editor-type-id="LargeFileEditor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/input/7.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="72" column="62" selection-start-line="72" selection-start-column="62" selection-end-line="72" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/worker.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2280">
           <caret line="152" column="83" selection-start-line="152" selection-start-column="83" selection-end-line="152" selection-end-column="83" />
           <folding>
             <element signature="e#375#385#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/word_count_reduce_phase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="51" column="28" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -634,10 +638,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/output/partition_0">
+    <entry file="file://$PROJECT_DIR$/Output.txt">
+      <provider selected="true" editor-type-id="LargeFileEditor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input/7.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="148" selection-start-column="148" selection-end-column="148" />
+        <state relative-caret-position="1080">
+          <caret line="72" column="62" selection-start-line="72" selection-start-column="62" selection-end-line="72" selection-end-column="62" />
         </state>
       </provider>
     </entry>
@@ -648,20 +655,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/word_count_reduce_phase.py">
+    <entry file="file://$PROJECT_DIR$/output/partition_0">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="51" column="28" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
+        <state>
+          <caret column="148" selection-start-column="148" selection-end-column="148" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/master.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="722" column="28" selection-start-line="722" selection-start-column="28" selection-end-line="722" selection-end-column="28" />
+        <state relative-caret-position="164">
+          <caret line="237" column="61" selection-start-line="237" selection-start-column="61" selection-end-line="237" selection-end-column="61" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>

@@ -1,6 +1,9 @@
 import rpyc
 import time
 import _thread
+from threading import Thread, Lock
+
+mutex = Lock()
 import os
 
 class Job:
@@ -28,6 +31,7 @@ class ReduceWorker:
     id = None
     path = None
     ip = None
+    partition = None
 
     def __init__(self):
         global port_number
@@ -188,7 +192,11 @@ def result(thread_name, result, resource):
         continue
     global Map_finished
     print(result.value)
+    mutex.acquire()
     Map_finished += 1
+    print("number of finished map task changed" + str(Map_finished))
+    mutex.release()
+
     resources.insert(resource)
 
 
@@ -207,8 +215,10 @@ def heartbeat(thread_name):
                 print(worker, "worker", worker.id, "died")
                 for task in worker.tasks:
                     tasks.insert(task)
+                    mutex.acquire()
                     Map_finished += -1
-
+                    print("number of finished map task changed")
+                    mutex.release()
             else:
                 print(worker, "worker", worker.id, "is alive")
 
@@ -217,7 +227,7 @@ def heartbeat(thread_name):
             #func = rpyc.async_(remote_func)
             #result = func()
             #result.add_callback(hb_func(worker))
-        time.sleep(1)
+        #time.sleep(1)
 
 def reduce_heartbeat(thread_name):
     while True:
@@ -225,24 +235,36 @@ def reduce_heartbeat(thread_name):
             try:
                 ping_conn = rpyc.classic.connect(worker.ip, port=22222)
             except:
+                reduceworkers[2].partition = worker.partition
+                _thread.start_new_thread(reduce_thread, ("HeartBeatThread1", reduceworkers[2]))
                 reduceworkers.remove(worker)
-                for resource in resources.queue:
-                    if resource.worker == worker:
-                        resources.queue.remove(resource)
-
-                print(worker, "worker", worker.id, "died")
-                for task in worker.tasks:
-                    tasks.insert(task)
-
             else:
                 print(worker, "worker", worker.id, "is alive")
 
             #ping_conn.execute(heartbeat_txt)
             #remote_func = ping_conn.namespace['heartbeat']
             #func = rpyc.async_(remote_func)
-            #result = func()
+            #result = func()b
             #result.add_callback(hb_func(worker))
-        time.sleep(1)
+        #time.sleep(1)
+
+def reduce_thread(thread_name, worker):
+    try:
+        try:
+            connn1 = rpyc.classic.connect(worker.ip, port=22222)
+        except:
+            print("Ddddddddddddddddddddddddddddd")
+        else:
+            connn1.execute(reduce_task_txt)
+            remote_func1 = connn1.namespace['word_count_reduce']
+            result1 = remote_func1(workers, worker.partition)
+            print(result1)
+    except:
+        print(str(worker.id) +" reduce failed")
+        #_thread.start_new_thread(reduce_thread, ("HeartBeatThread1", reduceworkers[2]))
+    else:
+        print(worker, "worker", worker.id, "is alive")
+
 
 def r_func(resource):
     global Map_finished
@@ -278,6 +300,8 @@ Map_finished = 0
 _thread.start_new_thread(scheduler, ("SchedulerThread",))
 _thread.start_new_thread(heartbeat, ("HeartBeatThread",))
 _thread.start_new_thread(reduce_heartbeat, ("HeartBeatThread1",))
+
+
 
 map_ips = ["52.3.129.76", "3.83.44.0", "3.83.24.246", "3.83.190.228"]
 reduce_ips = ["3.85.205.160", "3.84.116.176", "54.225.25.73"]
@@ -590,8 +614,9 @@ while True:
             print("Reduce Worker is not running on port=22222")
         else:
             worker = ReduceWorker()
-            worker.ip = map_ips[number_of_reduce_workers]
+            worker.ip = reduce_ips[number_of_reduce_workers]
             worker.conn = conn
+            worker.partition = number_of_reduce_workers
             worker.conn.execute(reduce_task_txt)
             worker.id = number_of_reduce_workers
             reduceworkers.append(worker)
@@ -647,7 +672,10 @@ while True:
         #print(str(t1 - t0))
         print("============================================")
 
+        mutex.acquire()
         Map_finished = 0
+        print("number of finished map task changed")
+        mutex.release()
 
     elif command == 't':
         while not resources.is_empty():
@@ -720,7 +748,7 @@ while True:
             tasks.insert(Task(i, 3))
         job_id += 1
 
-        while Map_finished < NUMBER_OF_TASKS:
+        while Map_finished != (NUMBER_OF_TASKS - 1):
             # print("no")
             continue
 
@@ -731,23 +759,8 @@ while True:
         print("============================================")
         Map_finished = 0
 
-        try:
-            connn1 = rpyc.classic.connect("3.85.205.160", port=22222)
-            connn2 = rpyc.classic.connect("3.84.116.176", port=22222)
-        except:
-            print("Ddddddddddddddddddddddddddddd")
-        else:
-            connn1.execute(reduce_task_txt)
-            remote_func1 = connn1.namespace['word_count_reduce']
-            result1 = remote_func1(workers, 0)
-            #for worker in workers:
-                #print
-            #result1 = remote_func1(workers, 0)
-            print(result1)
-            connn2.execute(reduce_task_txt)
-            remote_func2 = connn2.namespace['word_count_reduce']
-            result2 = remote_func2(workers, 1)
-            print(result2)
+        _thread.start_new_thread(reduce_thread, ("HeartBeatThread1", reduceworkers[0]))
+        _thread.start_new_thread(reduce_thread, ("HeartBeatThread1", reduceworkers[1]))
 
         t2 = time.perf_counter()
         print("============================================")
