@@ -193,6 +193,7 @@ def result(thread_name, result, resource):
 
 
 def heartbeat(thread_name):
+    global Map_finished
     while True:
         for worker in workers:
             try:
@@ -206,6 +207,7 @@ def heartbeat(thread_name):
                 print(worker, "worker", worker.id, "died")
                 for task in worker.tasks:
                     tasks.insert(task)
+                    Map_finished += -1
 
             else:
                 print(worker, "worker", worker.id, "is alive")
@@ -275,10 +277,10 @@ Map_finished = 0
 
 _thread.start_new_thread(scheduler, ("SchedulerThread",))
 _thread.start_new_thread(heartbeat, ("HeartBeatThread",))
-_thread.start_new_thread(reduce_heartbeat, ("HeartBeatThread",))
+_thread.start_new_thread(reduce_heartbeat, ("HeartBeatThread1",))
 
-map_ips = ["52.3.129.76", "54.165.81.245", "3.83.24.246", "3.83.190.228"]
-reduce_ips = ["3.84.180.136", "3.83.13.27", "34.207.230.231"]
+map_ips = ["52.3.129.76", "3.83.44.0", "3.83.24.246", "3.83.190.228"]
+reduce_ips = ["3.85.205.160", "3.84.116.176", "54.225.25.73"]
 
 conn_map = {}
 
@@ -712,12 +714,13 @@ while True:
     #input
     #map function
     elif command == 'd1':
+        Map_finished = 0
         t0 = time.perf_counter()
         for i in range(NUMBER_OF_TASKS):
             tasks.insert(Task(i, 3))
         job_id += 1
 
-        while Map_finished != NUMBER_OF_TASKS:
+        while Map_finished < NUMBER_OF_TASKS:
             # print("no")
             continue
 
@@ -729,20 +732,20 @@ while True:
         Map_finished = 0
 
         try:
-            connn1 = rpyc.classic.connect("3.84.180.136", port=22222)
-            #connn2 = rpyc.classic.connect("3.83.13.27", port=22222)
+            connn1 = rpyc.classic.connect("3.85.205.160", port=22222)
+            connn2 = rpyc.classic.connect("3.84.116.176", port=22222)
         except:
             print("Ddddddddddddddddddddddddddddd")
         else:
-            #connn2.execute(reduce_task_txt)
-            #remote_func1 = connn2.namespace['word_count_reduce']
-            #result = remote_func1(workers, 0)
+            connn1.execute(reduce_task_txt)
+            remote_func1 = connn1.namespace['word_count_reduce']
+            result1 = remote_func1(workers, 0)
             #for worker in workers:
                 #print
             #result1 = remote_func1(workers, 0)
-            #print(result1)
-            connn1.execute(reduce_task_txt)
-            remote_func2 = connn1.namespace['word_count_reduce']
+            print(result1)
+            connn2.execute(reduce_task_txt)
+            remote_func2 = connn2.namespace['word_count_reduce']
             result2 = remote_func2(workers, 1)
             print(result2)
 
@@ -777,7 +780,7 @@ res1 = asleep1()
 print("Node2", file=conn2.modules.sys.stdout)
 conn2.execute(wc_txt)
 remote_wc2 = conn2.namespace['WC']
-# asleep2 = rpyc.async_(remote_wc2)
+# asleep2 = rpyc.async_(remote_wc2)§
 asleep2 = rpyc.async_(remote_wc2)
 res2 = asleep2()
 # print(res2)
