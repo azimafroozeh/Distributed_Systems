@@ -1,5 +1,7 @@
 # A Map Reduce Framework
 
+An overall summary of the project is given below. For a more detailed content, check the project report in the file ```report.pdf```
+
 ## Technologies and Libraries used
 
 - The MapReduce framework was implemented using [Python 3.7](https://www.python.org/downloads/release/python-371/).
