@@ -193,13 +193,8 @@ def result(thread_name,worker, result, resource, task):
         continue
     global Map_finished
     print(result.value)
-    mutex.acquire()
-    Map_finished += 1
+    map_finished_lock(1)
     worker.tasks.append(task)
-
-    print("number of finished map task changed" + str(Map_finished))
-    mutex.release()
-
     resources.insert(resource)
 
 
@@ -210,6 +205,7 @@ def heartbeat(thread_name):
             try:
                 ping_conn = rpyc.classic.connect(worker.ip, port=22222)
             except:
+
                 workers.remove(worker)
                 for resource in resources.queue:
                     if resource.worker == worker:
@@ -218,10 +214,9 @@ def heartbeat(thread_name):
                 print(worker, "worker", worker.id, "died")
                 for task in worker.tasks:
                     tasks.insert(task)
-                    mutex.acquire()
-                    Map_finished += -1
-                    print("number of finished map task changed")
-                    mutex.release()
+                    map_finished_lock(-1)
+                if flag == 1:
+                    goto(783)
             else:
                 print(worker, "worker", worker.id, "is alive")
 
@@ -279,6 +274,14 @@ def reduce_thread(thread_name, worker):
         mutex2.release()
 
 
+def map_finished_lock(change):
+    global Map_finished
+    mutex.acquire()
+    Map_finished += change
+    mutex.release()
+
+
+    print("number of finished map task changed" + str(Map_finished))
 
 def r_func(resource):
     global Map_finished
@@ -311,6 +314,7 @@ number_of_workers = 0
 number_of_reduce_workers = 0
 Map_finished = 0
 reduce_finished = 0
+flag = 0
 
 _thread.start_new_thread(scheduler, ("SchedulerThread",))
 _thread.start_new_thread(heartbeat, ("HeartBeatThread",))
@@ -757,6 +761,7 @@ while True:
     #input
     #map function
     elif command == 'd1':
+        flag = 0
         Map_finished = 0
         t0 = time.perf_counter()
         for i in range(NUMBER_OF_TASKS):
@@ -773,6 +778,8 @@ while True:
         # print(str(t1 - t0))
         print("============================================")
         Map_finished = 0
+        reduce_finished = 0
+        flag = 1
 
         _thread.start_new_thread(reduce_thread, ("HeartBeatThread1", reduceworkers[0]))
         _thread.start_new_thread(reduce_thread, ("HeartBeatThread1", reduceworkers[1]))
@@ -782,6 +789,7 @@ while True:
         while reduce_finished != 2:
             # print("no")
             continue
+
 
         t2 = time.perf_counter()
         print("============================================")

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fcb46ec0-e4b2-4d70-9986-b5a59d09b792" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/master.py" beforeDir="false" afterPath="$PROJECT_DIR$/master.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -12,7 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/DistributedSystem$master.coverage" NAME="master Coverage Results" MODIFIED="1545378231871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DistributedSystem$master.coverage" NAME="master Coverage Results" MODIFIED="1545386068380" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DistributedSystem$rpyc_classic.coverage" NAME="rpyc_classic Coverage Results" MODIFIED="1543598503216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/bin" />
     <SUITE FILE_PATH="coverage/DistributedSystem$wc.coverage" NAME="wc Coverage Results" MODIFIED="1543793163034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/DistributedSystem$client.coverage" NAME="master Coverage Results" MODIFIED="1543856413820" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -28,22 +27,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/worker.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2280">
+            <state relative-caret-position="1270">
               <caret line="152" column="83" selection-start-line="152" selection-start-column="83" selection-end-line="152" selection-end-column="83" />
               <folding>
                 <element signature="e#375#385#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/word_count_reduce_phase.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="51" column="28" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -66,13 +53,28 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/master.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
-              <caret line="277" column="78" selection-start-line="277" selection-start-column="78" selection-end-line="277" selection-end-column="78" />
+            <state relative-caret-position="-6051">
+              <caret line="176" column="27" lean-forward="true" selection-start-line="176" selection-start-column="27" selection-end-line="176" selection-end-column="27" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Demo/0.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Demo/1.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Demo/2.txt">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -173,7 +175,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-54" />
+    <option name="x" value="163" />
     <option name="y" value="60" />
     <option name="width" value="1621" />
     <option name="height" value="922" />
@@ -190,11 +192,6 @@
             <path>
               <item name="DistributedSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="DistributedSystem" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DistributedSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DistributedSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="Demo" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -383,12 +380,12 @@
       <workItem from="1545168041989" duration="24910000" />
       <workItem from="1545223550970" duration="1821000" />
       <workItem from="1545247097111" duration="26601000" />
-      <workItem from="1545368855851" duration="9106000" />
+      <workItem from="1545368855851" duration="15285000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="163063000" />
+    <option name="totallyTimeSpent" value="169242000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -400,7 +397,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="60" y="37" width="1621" height="922" extended-state="0" />
+    <frame x="163" y="60" width="1621" height="922" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.80131364" visible="true" weight="0.22925903" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -452,9 +449,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/worker1/partition1/key_values_split_3.txt" />
-    <entry file="file://$PROJECT_DIR$/worker1/partition1/key_values_split_6.txt" />
-    <entry file="file://$PROJECT_DIR$/worker2/partition0/key_values_split_1.txt" />
     <entry file="file://$PROJECT_DIR$/worker2/partition0/key_values_split_4.txt" />
     <entry file="file://$PROJECT_DIR$/worker2/partition0/key_values_split_7.txt" />
     <entry file="file://$PROJECT_DIR$/worker1/partition0/key_values_split_6.txt" />
@@ -611,16 +605,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/output/partition_ 1" />
     <entry file="file://$PROJECT_DIR$/output/partition_ 0" />
-    <entry file="file://$PROJECT_DIR$/worker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2280">
-          <caret line="152" column="83" selection-start-line="152" selection-start-column="83" selection-end-line="152" selection-end-column="83" />
-          <folding>
-            <element signature="e#375#385#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/word_count_reduce_phase.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="765">
@@ -630,16 +614,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/word_count_map_phase.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="43" selection-start-column="43" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Output.txt">
-      <provider selected="true" editor-type-id="LargeFileEditor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/input/7.txt">
       <provider selected="true" editor-type-id="text-editor">
@@ -662,10 +636,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/worker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1270">
+          <caret line="152" column="83" selection-start-line="152" selection-start-column="83" selection-end-line="152" selection-end-column="83" />
+          <folding>
+            <element signature="e#375#385#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Output.txt">
+      <provider selected="true" editor-type-id="LargeFileEditor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Demo/0.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Demo/1.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Demo/2.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/word_count_map_phase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="43" selection-start-column="43" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/master.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="277" column="78" selection-start-line="277" selection-start-column="78" selection-end-line="277" selection-end-column="78" />
+        <state relative-caret-position="-6051">
+          <caret line="176" column="27" lean-forward="true" selection-start-line="176" selection-start-column="27" selection-end-line="176" selection-end-column="27" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
