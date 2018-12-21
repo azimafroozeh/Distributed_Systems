@@ -4,6 +4,7 @@ import _thread
 from threading import Thread, Lock
 
 mutex = Lock()
+mutex2 = Lock()
 import os
 
 class Job:
@@ -169,7 +170,7 @@ def scheduler(threadName):
                     #print("jobId: ", deleted_task.job_id, "| Type(0=M,1=R): ", deleted_task.type, "| splitNumber: ",
                           #deleted_task.info, "| thread: ", threadName, "| priority: ", deleted_task.priority, file=deleted_resource.worker.conn.modules.sys.stdout)
                     deleted_task.worker = deleted_resource.worker
-                    deleted_task.worker.tasks.append(deleted_task)
+                    #deleted_task.worker.tasks.append(deleted_task)
                     deleted_task.resource = deleted_resource
                     try:
                         deleted_task.conn = rpyc.classic.connect(deleted_resource.worker.ip, port=22222)
@@ -183,17 +184,19 @@ def scheduler(threadName):
                         deleted_task.func = rpyc.async_(deleted_task.remote_func)
                         deleted_task.result = deleted_task.func(deleted_task.info, deleted_resource.worker.id)
                         #deleted_task.result.add_callback(r_func(deleted_resource))
-                        _thread.start_new_thread(result, ("SchedulerThread", deleted_task.result, deleted_resource))
+                        _thread.start_new_thread(result, ("SchedulerThread", deleted_task.worker, deleted_task.result, deleted_resource, deleted_task))
 
 #def new_result():
 
-def result(thread_name, result, resource):
+def result(thread_name,worker, result, resource, task):
     while not result.ready:
         continue
     global Map_finished
     print(result.value)
     mutex.acquire()
     Map_finished += 1
+    worker.tasks.append(task)
+
     print("number of finished map task changed" + str(Map_finished))
     mutex.release()
 
@@ -230,11 +233,16 @@ def heartbeat(thread_name):
         #time.sleep(1)
 
 def reduce_heartbeat(thread_name):
+    global  reduce_finished
     while True:
         for worker in reduceworkers:
             try:
                 ping_conn = rpyc.classic.connect(worker.ip, port=22222)
             except:
+                mutex2.acquire()
+                reduce_finished += -1
+                print("number of finished reduce task changed, Number : " + str(reduce_finished))
+                mutex2.release()
                 reduceworkers[2].partition = worker.partition
                 _thread.start_new_thread(reduce_thread, ("HeartBeatThread1", reduceworkers[2]))
                 reduceworkers.remove(worker)
@@ -249,6 +257,7 @@ def reduce_heartbeat(thread_name):
         #time.sleep(1)
 
 def reduce_thread(thread_name, worker):
+    global reduce_finished
     try:
         try:
             connn1 = rpyc.classic.connect(worker.ip, port=22222)
@@ -263,7 +272,12 @@ def reduce_thread(thread_name, worker):
         print(str(worker.id) +" reduce failed")
         #_thread.start_new_thread(reduce_thread, ("HeartBeatThread1", reduceworkers[2]))
     else:
-        print(worker, "worker", worker.id, "is alive")
+        #print(worker, "worker", worker.id, "is alive")
+        mutex2.acquire()
+        reduce_finished += 1
+        print("number of finished reduce task changed, Number : " + str(reduce_finished))
+        mutex2.release()
+
 
 
 def r_func(resource):
@@ -296,6 +310,7 @@ reduceworkers =[]
 number_of_workers = 0
 number_of_reduce_workers = 0
 Map_finished = 0
+reduce_finished = 0
 
 _thread.start_new_thread(scheduler, ("SchedulerThread",))
 _thread.start_new_thread(heartbeat, ("HeartBeatThread",))
@@ -748,7 +763,7 @@ while True:
             tasks.insert(Task(i, 3))
         job_id += 1
 
-        while Map_finished != (NUMBER_OF_TASKS - 1):
+        while Map_finished != (NUMBER_OF_TASKS):
             # print("no")
             continue
 
@@ -762,11 +777,18 @@ while True:
         _thread.start_new_thread(reduce_thread, ("HeartBeatThread1", reduceworkers[0]))
         _thread.start_new_thread(reduce_thread, ("HeartBeatThread1", reduceworkers[1]))
 
+
+
+        while reduce_finished != 2:
+            # print("no")
+            continue
+
         t2 = time.perf_counter()
         print("============================================")
         print("Reduce tasks finished, time is : " + str(t2 - t1))
         # print(str(t1 - t0))
         print("============================================")
+
         Map_finished = 0
 
 
